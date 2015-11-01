@@ -1,0 +1,14 @@
+package com.example.team_foxhound.minicapstone_project.Interfaces;
+
+/**
+ * Created by Nitesh on 01-Nov-15.
+ */
+public interface AlgorithmGeneratorInterface {
+
+    public CalculateHBmin(string age){};
+    public CalculateTHBmin(int HBmax, int Type);
+    public selectNextSong(int HB, string Path [],int  BBM[],string Name);
+    public TriggerVib(int HBcurr, int targetHB);
+    public ComputeCal(int age, int weight, int height, int distance);
+
+}

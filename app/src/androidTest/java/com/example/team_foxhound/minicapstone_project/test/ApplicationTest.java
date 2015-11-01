@@ -1,4 +1,4 @@
-package com.example.team_foxhound.minicapstone_project;
+package com.example.team_foxhound.minicapstone_project.test;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
