@@ -5,10 +5,12 @@ package com.example.team_foxhound.minicapstone_project.Interfaces;
  */
 public interface AlgorithmGeneratorInterface {
 
-    public CalculateHBmin(string age){};
-    public CalculateTHBmin(int HBmax, int Type);
-    public selectNextSong(int HB, string Path [],int  BBM[],string Name);
-    public TriggerVib(int HBcurr, int targetHB);
-    public ComputeCal(int age, int weight, int height, int distance);
+    public int CalculateHBmax(Object age;string);
+
+    public int CalculateTHBmax(int HBmax, UserPreferences preferences);
+
+    public void TriggerVib(int HBcurr, int targetHB);
+
+    public int ComputeCal(Object ageLint, int weight, int height, int distance);
 
 }
