@@ -18,7 +18,15 @@ public class AlgorithmGeneratorTest extends TestCase {
 
     }
     @Test
-    public void testalgorithmGenerator(){
+    public void testCalculateHBmax(){
+
+    }
+    @Test
+    public void testCalculateTHBmax(){
+
+    }
+    @Test
+    public void TriggerVib(){
 
     }
 }
