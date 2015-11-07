@@ -1,5 +1,9 @@
 package com.example.team_foxhound.minicapstone_project.test;
 
+import com.example.team_foxhound.minicapstone_project.AlgorithmGenerator.AlgorithmGenerator;
+import com.example.team_foxhound.minicapstone_project.Interfaces.AlgorithmGeneratorInterface;
+import com.example.team_foxhound.minicapstone_project.UserManagement.UserPreferences;
+
 import junit.framework.TestCase;
 
 import org.junit.Test;
@@ -18,7 +22,17 @@ public class AlgorithmGeneratorTest extends TestCase {
 
     }
     @Test
-    public void testalgorithmGenerator(){
-
+    public void testCalculateHBmax(){
+        AlgorithmGeneratorInterface i = new AlgorithmGenerator();
+        assertEquals(i.CalculateHBmax(25,"Intermediate"),120);
+    }
+    @Test
+    public void testCalculateTHBmax(){
+        AlgorithmGeneratorInterface i = new AlgorithmGenerator();
+        UserPreferences userPreferences = new UserPreferences();
+        assertEquals(i.CalculateTHBmax(20,userPreferences),130);
+    }
+    @Test
+    public void TriggerVib(){
     }
 }
