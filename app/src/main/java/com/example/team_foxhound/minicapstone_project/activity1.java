@@ -1,27 +1,22 @@
 package com.example.team_foxhound.minicapstone_project;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class activity1 extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.activity_activity1);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_activity1, menu);
         return true;
     }
 
@@ -39,14 +34,4 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void setLogin(View v){
-        Intent intent  = new Intent(MainActivity.this, activity1.class);
-        startActivity(intent);
-    }
-
-//    public <EditText> onClick(View v){
-//        EditText username = (EditText)findViewById(R.id.editText);
-//        EditText password = (EditText)findViewById(R.id.editText3);
-//    }
 }
