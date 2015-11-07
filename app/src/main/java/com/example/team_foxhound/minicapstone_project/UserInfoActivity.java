@@ -1,34 +1,22 @@
 package com.example.team_foxhound.minicapstone_project;
 
-<<<<<<< HEAD
-import android.content.Context;
-=======
-import android.content.Intent;
->>>>>>> 81d7ba773ecd0ac604095f87694b7d0adcb10f67
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
-    public Context contextnew;
+public class UserInfoActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        contextnew=getApplicationContext();
-
-
+        setContentView(R.layout.activity_user_info);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_user_info, menu);
         return true;
     }
 
@@ -46,14 +34,4 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-//    public void setLogin(View v){
-//        Intent intent  = new Intent(MainActivity.this, activity1.class);
-//        startActivity(intent);
-//    }
-
-//    public <EditText> onClick(View v){
-//        EditText username = (EditText)findViewById(R.id.editText);
-//        EditText password = (EditText)findViewById(R.id.editText3);
-//    }
 }
