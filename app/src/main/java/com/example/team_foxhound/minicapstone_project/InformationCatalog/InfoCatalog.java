@@ -8,16 +8,24 @@ package com.example.team_foxhound.minicapstone_project.InformationCatalog;////
 //
 
 
-import com.example.team_foxhound.minicapstone_project.Interfaces.InfoCatalogInterface;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
-public class InfoCatalog implements InfoCatalogInterface{
-    @Override
+import com.example.team_foxhound.minicapstone_project.Interfaces.InfoCatalogInterface;
+import com.example.team_foxhound.minicapstone_project.Interfaces.InterfaceHandler;
+import com.example.team_foxhound.minicapstone_project.MainActivity;
+
+import persistence.Handler;
+
+public class InfoCatalog extends MainActivity {
     public int[] getInfo() {
         return new int[0];
     }
 
-    @Override
-    public void storeInfo(int[] info) {
+    public void storeInfo(int age, int height,int weight) {
+        InterfaceHandler handler=new Handler(contextnew);
+        handler.putUserInfo(age,height,weight);
 
     }
 
