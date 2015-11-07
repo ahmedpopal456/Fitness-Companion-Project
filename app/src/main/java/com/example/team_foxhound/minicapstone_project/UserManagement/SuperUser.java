@@ -8,9 +8,7 @@ package com.example.team_foxhound.minicapstone_project.UserManagement;//
 //
 
 
-import android.widget.EditText;
-
-import com.example.team_foxhound.minicapstone_project.MainActivity;
+import com.example.team_foxhound.minicapstone_project.Activities.MainActivity;
 
 public abstract class SuperUser extends MainActivity {
 	private String firstName;

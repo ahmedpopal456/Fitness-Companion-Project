@@ -8,24 +8,27 @@ package com.example.team_foxhound.minicapstone_project.InformationCatalog;////
 //
 
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-
-import com.example.team_foxhound.minicapstone_project.Interfaces.InfoCatalogInterface;
 import com.example.team_foxhound.minicapstone_project.Interfaces.InterfaceHandler;
-import com.example.team_foxhound.minicapstone_project.MainActivity;
+import com.example.team_foxhound.minicapstone_project.Activities.MainActivity;
+import com.example.team_foxhound.minicapstone_project.UserManagement.SubUser;
 
 import persistence.Handler;
 
-public class InfoCatalog extends MainActivity {
+public class InfoCatalog extends SubUser{
     public int[] getInfo() {
         return new int[0];
     }
 
-    public void storeInfo(int age, int height,int weight) {
-        InterfaceHandler handler=new Handler(contextnew);
-        handler.putUserInfo(age,height,weight);
+//    SubUser subuser = new SubUser();
+//    int age = subuser.age;
+//    int height = subuser.height;
+//    int weight = subuser.weight;
+
+    public void storeInfo(SubUser user)
+    {
+        InterfaceHandler handler=new Handler(null);
+        handler.putUserInfo(user.age,user.height,user.weight);
+
 
     }
 

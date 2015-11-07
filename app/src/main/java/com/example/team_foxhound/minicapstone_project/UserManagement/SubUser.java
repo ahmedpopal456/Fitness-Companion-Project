@@ -8,26 +8,45 @@ package com.example.team_foxhound.minicapstone_project.UserManagement;//
 //
 
 
-import android.widget.EditText;
+import android.text.Editable;
 
-import com.example.team_foxhound.minicapstone_project.MainActivity;
-import com.example.team_foxhound.minicapstone_project.R;
-import com.example.team_foxhound.minicapstone_project.UserManagement.SuperUser;
+import com.example.team_foxhound.minicapstone_project.Activities.UserInfoActivity;
 
-public class SubUser extends SuperUser {
+public class SubUser extends UserInfoActivity {
 	public int age;
 	public int weight;
 	public int height;
 
-	SubUser user = new SubUser();
+		public SubUser(){
+			setAge();
+			setHeight();
+			setWeight();
 
-    EditText username = (EditText)findViewById(R.id.editText);
-    EditText password = (EditText)findViewById(R.id.editText3);
+		}
+
+//    EditText username = (EditText)findViewById(R.id.editText);
+//    EditText password = (EditText)findViewById(R.id.editText3);
 
 //	user.setfName(username);
 //	user.setlName(lastName);
 //	user.setUsername(username);
 //	user.setPassword(password);
+
+	public void setAge(){
+
+		age = Integer.valueOf(editText.getText().toString()).intValue();
+	}
+
+
+	public void setWeight(){
+
+		weight = Integer.valueOf(editText3.getText().toString()).intValue();
+	}
+
+	public void setHeight(){
+
+		height = Integer.valueOf(editText2.getText().toString()).intValue();
+	}
 
 
 	public final void modifyProfile() {

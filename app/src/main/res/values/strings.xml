@@ -19,4 +19,6 @@
     </string>
     <string name="title_activity_activity1">activity1</string>
     <string name="title_activity_user_info">UserInfoActivity</string>
+    <string name="title_activity_main_activity_heart_beat">MainActivityHeartBeat</string>
+    <string name="title_activity_confirm_user">ConfirmUser</string>
 </resources>
