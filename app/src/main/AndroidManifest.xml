@@ -26,8 +26,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity1"
-            android:label="@string/title_activity_activity1" >
+            android:name=".UserInfoActivity"
+            android:label="@string/title_activity_user_info" >
         </activity>
     </application>
 

@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void setLogin(View v){
-        Intent intent  = new Intent(MainActivity.this, activity1.class);
-        startActivity(intent);
-    }
+//    public void setLogin(View v){
+//        Intent intent  = new Intent(MainActivity.this, activity1.class);
+//        startActivity(intent);
+//    }
 
 //    public <EditText> onClick(View v){
 //        EditText username = (EditText)findViewById(R.id.editText);
