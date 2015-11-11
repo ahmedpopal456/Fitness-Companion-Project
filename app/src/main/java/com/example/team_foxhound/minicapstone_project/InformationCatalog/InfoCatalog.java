@@ -8,16 +8,27 @@ package com.example.team_foxhound.minicapstone_project.InformationCatalog;////
 //
 
 
-import com.example.team_foxhound.minicapstone_project.Interfaces.InfoCatalogInterface;
+import com.example.team_foxhound.minicapstone_project.Interfaces.InterfaceHandler;
+import com.example.team_foxhound.minicapstone_project.Activities.MainActivity;
+import com.example.team_foxhound.minicapstone_project.UserManagement.SubUser;
 
-public class InfoCatalog implements InfoCatalogInterface{
-    @Override
+import persistence.Handler;
+
+public class InfoCatalog {
     public int[] getInfo() {
         return new int[0];
     }
 
-    @Override
-    public void storeInfo(int[] info) {
+//    SubUser subuser = new SubUser();
+//    int age = subuser.age;
+//    int height = subuser.height;
+//    int weight = subuser.weight;
+
+    public void storeInfo(SubUser user)
+    {
+        InterfaceHandler handler=new Handler(null);
+        handler.putUserInfo(user.age,user.height,user.weight);
+
 
     }
 

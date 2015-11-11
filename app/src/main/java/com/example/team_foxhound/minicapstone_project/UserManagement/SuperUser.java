@@ -8,17 +8,56 @@ package com.example.team_foxhound.minicapstone_project.UserManagement;//
 //
 
 
-import android.widget.EditText;
+import com.example.team_foxhound.minicapstone_project.Activities.MainActivity;
+import com.example.team_foxhound.minicapstone_project.Activities.UserInfoActivity;
 
-import com.example.team_foxhound.minicapstone_project.MainActivity;
+public class SuperUser extends MainActivity {
 
-public abstract class SuperUser extends MainActivity {
-	private String firstName;
-	public String lastName;
 	public String username;
 	public String password;
-	public void modifyProfile(){};
+
+	public void modifyProfile() {};
+
+	SuperUser() {
+	}    // Default Constructor
+
+	public SuperUser(String username, String password) {    //Parameterized Constructor
+		this.username = username;
+		this.password = password;
+
+	}
 
 
+//	public void setFirstName(String firstName) {
+//		this.firstName = firstName;
+//	}
+//
+//	public void setLastName(String lastName) {
+//		this.lastName = lastName;
+//	}
+// 	public String getFirstName() {
+//		return firstName;
+//	}
+//
+//	public String getLastName() {
+//		return lastName;
+//	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public void setPassword(String Password) {
+		this.password = Password;
+	}
+
+
+	public String getUsername(){
+		return username;
+	}
+	public String getPassword(){
+		return password;
+	}
 
 }
+

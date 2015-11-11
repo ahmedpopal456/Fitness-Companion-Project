@@ -8,35 +8,63 @@ package com.example.team_foxhound.minicapstone_project.UserManagement;//
 //
 
 
-import android.widget.EditText;
+import com.example.team_foxhound.minicapstone_project.InformationCatalog.RegisterInfo;
 
-import com.example.team_foxhound.minicapstone_project.MainActivity;
-import com.example.team_foxhound.minicapstone_project.R;
-import com.example.team_foxhound.minicapstone_project.UserManagement.SuperUser;
-
-public class SubUser extends SuperUser {
+public class SubUser extends RegisterInfo {
 	public int age;
 	public int weight;
 	public int height;
+	public String firstName;
+	public String lastName;
+	public String userName;
+	public String password;
 
-	SubUser user = new SubUser();
+	SubUser() {
+	}
 
-    EditText username = (EditText)findViewById(R.id.editText);
-    EditText password = (EditText)findViewById(R.id.editText3);
+
+/*//    EditText username = (EditText)findViewById(R.id.editText);
+//    EditText password = (EditText)findViewById(R.id.editText3);
 
 //	user.setfName(username);
 //	user.setlName(lastName);
 //	user.setUsername(username);
-//	user.setPassword(password);
+//	user.setPassword(password);*/
+
+	public void setAge(){
+
+		age = Integer.valueOf(editText.getText().toString()).intValue();
+	}
+
+
+	public void setWeight(){
+
+		weight = Integer.valueOf(editText3.getText().toString()).intValue();
+	}
+
+	public void setHeight(){
+
+		height = Integer.valueOf(editText2.getText().toString()).intValue();
+	}
 
 
 	public final void modifyProfile() {
 
 	}
 
-	public void setPreferences(Boolean[] preferences, int Type) {
+	public void setPreferences(UserPreferences preferences, int Type) {
 
 	}
 
+	public void setfname(String s) {
+		firstName=String.valueOf(editText4.getText().toString());
+	}
+	public void setlname(String lastName) {
+
+	}
+	public void setusername(String username) {
+
+	}
+	public void password(String password){}
 
 }

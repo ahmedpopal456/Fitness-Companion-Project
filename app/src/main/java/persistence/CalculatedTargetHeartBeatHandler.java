@@ -1,34 +1,31 @@
-package persistence;//package persistence;
-//
+package persistence;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.team_foxhound.minicapstone_project.Interfaces.InterfaceHandler;
-
-//* Created by Nitesh on 19-Oct-15.
-
-public class Handler extends SQLiteOpenHelper implements InterfaceHandler {
+/**
+ * Created by Nitesh on 11-Nov-15.
+ */
+public class CalculatedTargetHeartBeatHandler extends SQLiteOpenHelper implements com.example.team_foxhound.minicapstone_project.Interfaces.CalculatedTargetHeartBeatHandler {
     private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "fitnessDB.db";
-    private static final String FITNESS_TABLE_NAME = "fitness";
+    private static final String FITNESS_TABLE_NAME = "calculatedtargetheartbeat";
     private static final String KEY_WORD = "username";
-    private static final String AGE ="age";
-    private static final String WEIGHT="weight";
-    private static final String HEIGHT="height";
+    private static final String HEART_BEAT ="heartbeat";
+//    private static final String WEIGHT="weight";
+//    private static final String HEIGHT="height";
     private static final String KEY_DEFINITION = "";
     private static final String FITNESS_TABLE_CREATE = "CREATE TABLE "
             + FITNESS_TABLE_NAME
             + " ("
             + KEY_WORD + " TEXT PRIMARY KEY"
-            + AGE + " INTEGER"
-            + WEIGHT + " INTEGER"
-            + HEIGHT + " INTEGER"
+            + HEART_BEAT + " INTEGER"
             + KEY_DEFINITION + " User Credentials"+");";
 
 
-    public Handler(Context context) {
+    public CalculatedTargetHeartBeatHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -42,21 +39,11 @@ public class Handler extends SQLiteOpenHelper implements InterfaceHandler {
 
     }
     SQLiteDatabase db = this.getWritableDatabase();
-    public void putUserInfo(int age, int weight, int height){
+    public void putCalculatedTargetHeartBeat(int heartbeat){
         ContentValues values = new ContentValues();
-        values.put(AGE,age);
-        values.put(HEIGHT,height);
-        values.put(WEIGHT,weight);
+        values.put(HEART_BEAT,heartbeat);
         db.insert(FITNESS_TABLE_NAME, null, values);
         db.close();
 
     }
-//    public void putUserCredentials(){
-//
-//    }
-//    public void putCalculatedTargetHeartBeat(){
-//
-//    }
 }
-
-

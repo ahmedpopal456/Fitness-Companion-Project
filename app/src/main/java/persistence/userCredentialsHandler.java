@@ -1,34 +1,36 @@
-package persistence;//package persistence;
-//
+package persistence;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.team_foxhound.minicapstone_project.Interfaces.InterfaceHandler;
+import com.example.team_foxhound.minicapstone_project.Interfaces.UserPreferencesHandler;
 
-//* Created by Nitesh on 19-Oct-15.
+/**
+ * Created by Nitesh on 11-Nov-15.
+ */
+public class userCredentialsHandler extends SQLiteOpenHelper implements UserPreferencesHandler{
 
-public class Handler extends SQLiteOpenHelper implements InterfaceHandler {
     private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "fitnessDB.db";
-    private static final String FITNESS_TABLE_NAME = "fitness";
+    private static final String FITNESS_TABLE_NAME = "usercredentials";
     private static final String KEY_WORD = "username";
-    private static final String AGE ="age";
-    private static final String WEIGHT="weight";
-    private static final String HEIGHT="height";
+    private static final String PASSWORD ="password";
+    private static final String FIRST_NAME="fname";
+    private static final String LAST_NAME="lname";
     private static final String KEY_DEFINITION = "";
     private static final String FITNESS_TABLE_CREATE = "CREATE TABLE "
             + FITNESS_TABLE_NAME
             + " ("
             + KEY_WORD + " TEXT PRIMARY KEY"
-            + AGE + " INTEGER"
-            + WEIGHT + " INTEGER"
-            + HEIGHT + " INTEGER"
+            + PASSWORD + " TEXT"
+            + FIRST_NAME + " TEXT"
+            + LAST_NAME + " TEXT"
             + KEY_DEFINITION + " User Credentials"+");";
 
 
-    public Handler(Context context) {
+    public userCredentialsHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -42,21 +44,15 @@ public class Handler extends SQLiteOpenHelper implements InterfaceHandler {
 
     }
     SQLiteDatabase db = this.getWritableDatabase();
-    public void putUserInfo(int age, int weight, int height){
+
+    public void putUserCredentials(String username, String password, String fname, String lname){
         ContentValues values = new ContentValues();
-        values.put(AGE,age);
-        values.put(HEIGHT,height);
-        values.put(WEIGHT,weight);
+        values.put(KEY_WORD,username);
+        values.put(PASSWORD,password);
+        values.put(FIRST_NAME,fname);
+        values.put(LAST_NAME,lname);
         db.insert(FITNESS_TABLE_NAME, null, values);
         db.close();
 
     }
-//    public void putUserCredentials(){
-//
-//    }
-//    public void putCalculatedTargetHeartBeat(){
-//
-//    }
 }
-
-
