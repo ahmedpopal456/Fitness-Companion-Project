@@ -8,29 +8,28 @@ package com.example.team_foxhound.minicapstone_project.UserManagement;//
 //
 
 
-import android.text.Editable;
+import com.example.team_foxhound.minicapstone_project.InformationCatalog.RegisterInfo;
 
-import com.example.team_foxhound.minicapstone_project.Activities.UserInfoActivity;
-
-public class SubUser extends UserInfoActivity {
+public class SubUser extends RegisterInfo {
 	public int age;
 	public int weight;
 	public int height;
+	public String firstName;
+	public String lastName;
+	public String userName;
+	public String password;
 
-		public SubUser(){
-			setAge();
-			setHeight();
-			setWeight();
+	SubUser() {
+	}
 
-		}
 
-//    EditText username = (EditText)findViewById(R.id.editText);
+/*//    EditText username = (EditText)findViewById(R.id.editText);
 //    EditText password = (EditText)findViewById(R.id.editText3);
 
 //	user.setfName(username);
 //	user.setlName(lastName);
 //	user.setUsername(username);
-//	user.setPassword(password);
+//	user.setPassword(password);*/
 
 	public void setAge(){
 
@@ -53,9 +52,19 @@ public class SubUser extends UserInfoActivity {
 
 	}
 
-	public void setPreferences(Boolean[] preferences, int Type) {
+	public void setPreferences(UserPreferences preferences, int Type) {
 
 	}
 
+	public void setfname(String s) {
+		firstName=String.valueOf(editText4.getText().toString());
+	}
+	public void setlname(String lastName) {
+
+	}
+	public void setusername(String username) {
+
+	}
+	public void password(String password){}
 
 }

@@ -7,11 +7,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
+import com.example.team_foxhound.minicapstone_project.InformationCatalog.RegisterInfo;
 import com.example.team_foxhound.minicapstone_project.R;
+import com.example.team_foxhound.minicapstone_project.UserManagement.SuperUser;
 
 public class MainActivity extends AppCompatActivity {
     public Context contextnew;
+    EditText editText;
+    EditText editText3;
+    SuperUser superUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,12 +50,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setLogin(View v){
-        Intent intent  = new Intent(MainActivity.this, UserInfoActivity.class);
+      Intent intent  = new Intent(MainActivity.this, MainActivityHeartBeat.class);
+      startActivity(intent);
+    }
+    public void setSignUP(View v){
+        Intent intent  = new Intent(MainActivity.this, RegisterInfo.class);
         startActivity(intent);
     }
+    public void setUsername(View v){
+        editText = (EditText) findViewById(R.id.editText3);
+        superUser.setUsername(editText);
+    }
+    public void setPassword(View v) {
+        editText3 = (EditText) findViewById((R.id.editText3));
+        superUser.setPassword(editText3);
+    }
 
-//    public <EditText> onClick(View v){
-//        EditText username = (EditText)findViewById(R.id.editText);
-//        EditText password = (EditText)findViewById(R.id.editText3);
-//    }
 }

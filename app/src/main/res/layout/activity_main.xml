@@ -67,7 +67,8 @@
         android:id="@+id/editText"
         android:layout_below="@+id/textView3"
         android:layout_alignRight="@+id/textView2"
-        android:layout_alignEnd="@+id/textView2" />
+        android:layout_alignEnd="@+id/textView2"
+        android:onClick="setPassword" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -77,7 +78,8 @@
         android:layout_alignEnd="@+id/textView2"
         android:layout_below="@+id/textView"
         android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
+        android:layout_alignStart="@+id/editText"
+        android:onClick="setUsername" />
 
     <Button
         android:layout_width="wrap_content"

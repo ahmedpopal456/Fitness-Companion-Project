@@ -1,8 +1,9 @@
-package com.example.team_foxhound.minicapstone_project;
+package com.example.team_foxhound.minicapstone_project.Activities;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
+import com.example.team_foxhound.minicapstone_project.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

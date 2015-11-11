@@ -14,7 +14,7 @@ import com.example.team_foxhound.minicapstone_project.UserManagement.SubUser;
 
 import persistence.Handler;
 
-public class InfoCatalog extends SubUser{
+public class InfoCatalog {
     public int[] getInfo() {
         return new int[0];
     }

@@ -22,4 +22,8 @@
     <string name="title_activity_main_activity_heart_beat">MainActivityHeartBeat</string>
     <string name="title_activity_confirm_user">ConfirmUser</string>
     <string name="title_activity_maps">Map</string>
+
+    <string name="title_activity_register_info">register_info</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

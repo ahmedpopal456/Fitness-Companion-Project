@@ -9,10 +9,11 @@ package com.example.team_foxhound.minicapstone_project.InformationCatalog;//
 
 
 import com.example.team_foxhound.minicapstone_project.Interfaces.UserCatalogInterface;
+import com.example.team_foxhound.minicapstone_project.UserManagement.SuperUser;
 
-public class UserCatalog implements UserCatalogInterface {
-	public void registerUser(String username, String password, String firstname, String lastname) {
+public abstract class UserCatalog implements UserCatalogInterface  {
 
+	public void registerUser(SuperUser superUser) {
 	}
 
 	public void deleteUser(String username) {
