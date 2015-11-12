@@ -10,9 +10,9 @@ import android.widget.EditText;
 
 import com.example.team_foxhound.minicapstone_project.InformationCatalog.RegisterInfo;
 import com.example.team_foxhound.minicapstone_project.R;
+import com.example.team_foxhound.minicapstone_project.UserManagement.SubUser;
 
 public class UserInfoActivity extends AppCompatActivity {
-        RegisterInfo registerInfo;
         public EditText editText;
         public EditText editText2;
         public EditText editText3;
@@ -51,24 +51,45 @@ public class UserInfoActivity extends AppCompatActivity {
 
 
     public void setAge(View v){
-           editText = (EditText)findViewById(R.id.editText2);
-
-            registerInfo.setAge(editText);
+        editText = (EditText)findViewById(R.id.editText2);
+//        subUser.setAge( Integer.valueOf(editText.getText().toString()).intValue());
         }
+
+
     public void setHeight(View v){
+
         editText2 = (EditText)findViewById(R.id.editText4);
-        registerInfo.setHeight(editText2);
+    //    subUser.setheight(Integer.valueOf(editText2.getText().toString()).intValue());
     }
+
     public void setWeight(View v){
+
         editText3 = (EditText)findViewById(R.id.editText5);
-        registerInfo.setWeight(editText3);
+      //  subUser.setWeight(Integer.valueOf(editText3.getText().toString()).intValue());
+    }
+
+
+    //GETTER FUNCTIONS
+    public int getAge(){
+        return Integer.valueOf(editText.getText().toString()).intValue();
+    }
+    public int getHeight(){
+        return Integer.valueOf(editText2.getText().toString()).intValue();
+    }
+    public int getWeight(){
+        return Integer.valueOf(editText3.getText().toString()).intValue();
     }
     public void setGoogle(View v){
+
         Intent intent = new Intent(UserInfoActivity.this,MapsActivity.class);
         startActivity(intent);
     }
+
     public void setNext(View v){
-        Intent intent = new Intent(UserInfoActivity.this,MainActivity.class);
+
+        Intent intent = new Intent(UserInfoActivity.this,RegistrationConfirmation.class);
         startActivity(intent);
     }
+
+
 }

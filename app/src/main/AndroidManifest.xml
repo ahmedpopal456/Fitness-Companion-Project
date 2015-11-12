@@ -69,6 +69,10 @@
             android:name=".InformationCatalog.RegisterInfo"
             android:label="@string/title_activity_register_info" >
         </activity>
+        <activity
+            android:name=".Activities.RegistrationConfirmation"
+            android:label="@string/title_activity_registration_confirmation" >
+        </activity>
     </application>
 
 </manifest>
