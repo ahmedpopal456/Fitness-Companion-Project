@@ -2,65 +2,66 @@ package com.example.team_foxhound.minicapstone_project.InformationCatalog;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.view.View.OnClickListener;
 
 import com.example.team_foxhound.minicapstone_project.Activities.UserInfoActivity;
 import com.example.team_foxhound.minicapstone_project.R;
 
+
+
 public class RegisterInfo extends UserInfoActivity {
-    public EditText editText4;
-    public EditText editText5;
-    public EditText editText6;
-    public EditText editText7;
-    public EditText editText8;
+
+    public static String fNAME;
+    public static EditText editText4;
+    public static EditText editText5;
+    public static EditText editText6;
+    public static EditText editText7;
+    public static EditText editText8;
+    public static Button CLICK;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_info);
-    }
+
+       CLICK = (Button) findViewById(R.id.button6);
+       CLICK.setOnClickListener(
+
+            new View.OnClickListener() {
+
+                public void onClick(View view) {
+
+                    editText5=(EditText) findViewById(R.id.editText7);
+                    editText6=(EditText) findViewById(R.id.editText8);
+                    editText7=(EditText) findViewById(R.id.editText9);
+                    editText4 = (EditText) findViewById(R.id.editText6);
+
+                }
+            });
+  }
 
 
-    // SETTER FUNCTIONS
 
-    public void setfirstname(View v){
+    // GETTER FUNCTIONS
+    public String getfirstname(){ return editText4.getText().toString();}
+    public String getlastname(){ return editText5.getText().toString();}
+    public String getusername() {return editText6.getText().toString();}
+    public String getpassword(){return editText7.getText().toString();}
+    public String getpassword2(){return editText8.getText().toString();}
 
-        editText4=(EditText)findViewById(R.id.editText6);
-    }
-    public void setlastname(View v){
-    }
-    public void setusername(View v){
-    }
-    public void setpassword(View v){
-    }
-    public void setpassword2(View v){
-    }
 
-    //GETTER FUNCTIONS
-    public String getfirstname(){
-
-        return editText4.getText().toString();
-    }
-    public String getlastname(){
-        return editText5.toString();
-    }
-    public String getusername(){
-        return editText6.toString();
-    }
-    public String getpassword(){
-        return editText7.toString();
-    }
-    public String getpassword2(){
-        return editText8.toString();
-    }
-
+    // SETTING NEXT BUTTON
     public void setNextButton(View v){
-       editText4=(EditText)findViewById(R.id.editText6);
-        editText5=(EditText) findViewById(R.id.editText7);
-        editText6=(EditText) findViewById(R.id.editText8);
-        editText8=(EditText) findViewById(R.id.editText10);
-        Intent intent = new Intent(RegisterInfo.this,UserInfoActivity.class);
-        startActivity(intent);
 
+        Intent intent = new Intent(RegisterInfo.this, UserInfoActivity.class);
+        startActivity(intent);
     }
+
+
 }

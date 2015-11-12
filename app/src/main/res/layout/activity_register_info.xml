@@ -6,14 +6,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.team_foxhound.minicapstone_project.InformationCatalog.RegisterInfo">
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:text="First Name"
         android:ems="10"
-        android:id="@+id/editText6"
-        android:onClick="setfirstname" />
+        android:id="@+id/editText6" />
 
     <EditText
         android:layout_width="match_parent"
@@ -24,8 +24,8 @@
         android:id="@+id/editText7"
         android:layout_below="@+id/editText6"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="setlastname" />
+        android:layout_alignParentStart="true"/>
+
 
     <EditText
         android:layout_width="match_parent"
@@ -36,8 +36,8 @@
         android:id="@+id/editText8"
         android:layout_below="@+id/editText7"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="setusername" />
+        android:layout_alignParentStart="true"/>
+
 
     <EditText
         android:layout_width="match_parent"
@@ -49,8 +49,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_below="@+id/editText8"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="setpassword" />
+        android:layout_alignParentStart="true"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -61,8 +60,8 @@
         android:id="@+id/editText10"
         android:layout_below="@+id/editText9"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="setpassword2" />
+        android:layout_alignParentStart="true"/>
+
 
     <Button
         android:layout_width="wrap_content"
@@ -70,7 +69,18 @@
         android:text="Next"
         android:id="@+id/button5"
         android:layout_gravity="center_horizontal"
+        android:onClick="setNextButton"
+        android:layout_below="@+id/button6"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="77dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set"
+        android:id="@+id/button6"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="setNextButton" />
+        android:layout_centerHorizontal="true" />
+        <!--android:onClick="setValues"/>-->
 </RelativeLayout>

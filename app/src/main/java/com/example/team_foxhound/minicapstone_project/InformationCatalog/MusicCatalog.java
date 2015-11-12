@@ -6,7 +6,7 @@
 //  @ Author : @Ahmed, Nitesh, Nauman, Philippe
 //
 //
-
+package com.example.team_foxhound.minicapstone_project.InformationCatalog;////
 
 import com.example.team_foxhound.minicapstone_project.Interfaces.MusicCatalogInterface;
 

@@ -65,8 +65,8 @@
         android:id="@+id/editText2"
         android:layout_above="@+id/textView5"
         android:layout_alignRight="@+id/textView7"
-        android:layout_alignEnd="@+id/textView7"
-        android:onClick="setAge"/>
+        android:layout_alignEnd="@+id/textView7" />
+
 
     <EditText
         android:layout_width="wrap_content"
@@ -76,8 +76,8 @@
         android:id="@+id/editText4"
         android:layout_alignBottom="@+id/textView5"
         android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
-        android:onClick="setHeight"/>
+        android:layout_alignStart="@+id/editText2" />
+
 
     <EditText
         android:layout_width="wrap_content"
@@ -87,8 +87,8 @@
         android:id="@+id/editText5"
         android:layout_alignBottom="@+id/textView6"
         android:layout_alignLeft="@+id/editText4"
-        android:layout_alignStart="@+id/editText4"
-        android:onClick="setWeight"/>
+        android:layout_alignStart="@+id/editText4" />
+
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -98,8 +98,8 @@
         android:id="@+id/button3"
         android:onClick="setGoogle"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/textView6"
-        android:layout_alignStart="@+id/textView6" />
+        android:layout_toLeftOf="@+id/editText5"
+        android:layout_toStartOf="@+id/editText5" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -107,11 +107,19 @@
         android:layout_height="wrap_content"
         android:text="Next"
         android:id="@+id/button4"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/editText5"
-        android:layout_alignEnd="@+id/editText5"
         android:onClick="setNext"
-        android:layout_alignTop="@+id/button3" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set"
+        android:id="@+id/button7"
+        android:layout_above="@+id/button3"
+        android:layout_alignRight="@+id/textView8"
+        android:layout_alignEnd="@+id/textView8" />
 
 
 </RelativeLayout>

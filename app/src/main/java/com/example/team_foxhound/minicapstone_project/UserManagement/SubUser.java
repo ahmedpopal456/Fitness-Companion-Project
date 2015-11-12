@@ -67,18 +67,18 @@ public class SubUser extends RegisterInfo {
 	}
 
 	public void setfname(String s) {
-		firstName=String.valueOf(editText4.getText().toString());
+		firstName=s;
 	}
-	public void setlname() {
-		lastName=String.valueOf(editText5.getText().toString());
+	public void setlname(String s) {
+		lastName=s;
 	}
-	public void setusername() {
-	userName= String.valueOf(editText6.getText().toString());
+	public void setusername(String s) {
+	userName= s;
 	}
-	public void password(){
-		password=String.valueOf(editText7.getText().toString());
+	public void setpassword(String s) {
+		password = s;
 	}
-	public String getfname(){
+	public String getfname(String s){
 		return firstName;
 	}
 }

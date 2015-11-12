@@ -2,6 +2,7 @@ package com.example.team_foxhound.minicapstone_project.Activities;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.text.Editable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -10,22 +11,51 @@ import com.example.team_foxhound.minicapstone_project.InformationCatalog.Registe
 import com.example.team_foxhound.minicapstone_project.R;
 import com.example.team_foxhound.minicapstone_project.UserManagement.SubUser;
 
+import org.w3c.dom.Text;
+
 public class RegistrationConfirmation extends RegisterInfo {
     SubUser subUser;
-    TextView editTexttest;
+    TextView fname;
+    TextView lname;
+    TextView username;
+    TextView password;
+    TextView age;
+    TextView weight;
+    TextView height;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_confirmation);
 
-        showfirstname(editTexttest);
+         fname = (TextView)findViewById(R.id.textView9);
+         lname = (TextView)findViewById(R.id.textView10);
+         username = (TextView)findViewById(R.id.textView13);
+         password = (TextView)findViewById(R.id.textView14);
+         age = (TextView)findViewById(R.id.textView15);
+         height = (TextView)findViewById(R.id.textView16);
+         weight = (TextView)findViewById(R.id.textView17);
+
+        fname.setText("The First Name entered:  "+getfirstname());
+        lname.setText("The Last Name entered:  "+getlastname());
+        username.setText("The Username entered:  "+getusername());
+        password.setText("The Password entered:  "+getpassword());
+
+       age.setText("The Age entered:  "+getAge());
+       height.setText("The Heightentered:  "+getHeight());
+       weight.setText("The Weight entered:  "+getWeight());
+
+  }
 
 
-    }
 
-   public void showfirstname(TextView v){
+public void createUser(View v) {
 
-      v = (TextView)findViewById(R.id.textView9);
-       v.setText("First Name is :" +getfirstname());
-   }
+    subUser.setfname(getfirstname());     ,
+    subUser.setlname(getlastname());
+
+
+}
+
+
 }
