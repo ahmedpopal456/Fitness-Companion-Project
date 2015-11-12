@@ -2,6 +2,8 @@ package com.example.team_foxhound.minicapstone_project.test;
 
 import junit.framework.TestCase;
 
+import dalvik.annotation.TestTargetClass;
+
 /**
  * Created by Nitesh on 01-Nov-15.
  */
@@ -15,4 +17,5 @@ public class InfoCatalogTest extends TestCase {
     public void tearDown() throws Exception {
 
     }
+
 }
