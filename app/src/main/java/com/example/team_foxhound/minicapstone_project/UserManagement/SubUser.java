@@ -20,33 +20,43 @@ public class SubUser extends RegisterInfo {
 	public String password;
 
 	SubUser() {
-	}
+
+        age = 0;
+        weight = 0;
+        height = 0;
+        firstName = "";
+        lastName = "";
+        password = "";
+    }
+
+
 
 
 /*//    EditText username = (EditText)findViewById(R.id.editText);
-//    EditText password = (EditText)findViewById(R.id.editText3);
+
+        userName = "";//    EditText password = (EditText)findViewById(R.id.editText3);
 
 //	user.setfName(username);
 //	user.setlName(lastName);
 //	user.setUsername(username);
 //	user.setPassword(password);*/
 
-	public void setAge(){
+	public void setAge(int Age){
 
-		age = Integer.valueOf(editText.getText().toString()).intValue();
+		age =Age;
 	}
 
 
-	public void setWeight(){
+	public void setWeight(int Weight){
 
-		weight = Integer.valueOf(editText3.getText().toString()).intValue();
+		weight = Weight;
 	}
 
-	public void setHeight(){
+	public void setHeight(int Height) {
 
-		height = Integer.valueOf(editText2.getText().toString()).intValue();
+		height = Height;
+
 	}
-
 
 	public final void modifyProfile() {
 
@@ -59,12 +69,16 @@ public class SubUser extends RegisterInfo {
 	public void setfname(String s) {
 		firstName=String.valueOf(editText4.getText().toString());
 	}
-	public void setlname(String lastName) {
-
+	public void setlname() {
+		lastName=String.valueOf(editText5.getText().toString());
 	}
-	public void setusername(String username) {
-
+	public void setusername() {
+	userName= String.valueOf(editText6.getText().toString());
 	}
-	public void password(String password){}
-
+	public void password(){
+		password=String.valueOf(editText7.getText().toString());
+	}
+	public String getfname(){
+		return firstName;
+	}
 }
