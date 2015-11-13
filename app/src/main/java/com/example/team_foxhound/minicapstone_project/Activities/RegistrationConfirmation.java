@@ -15,7 +15,8 @@ import com.example.team_foxhound.minicapstone_project.UserManagement.SubUser;
 import org.w3c.dom.Text;
 
 public class RegistrationConfirmation extends RegisterInfo {
-    SubUser subUser;
+
+
     TextView fname;
     TextView lname;
     TextView username;
@@ -23,9 +24,12 @@ public class RegistrationConfirmation extends RegisterInfo {
     TextView age;
     TextView weight;
     TextView height;
+    SubUser subUser=  new SubUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_confirmation);
 
@@ -40,11 +44,12 @@ public class RegistrationConfirmation extends RegisterInfo {
         fname.setText("The First Name entered:  "+getfirstname());
         lname.setText("The Last Name entered:  "+getlastname());
         username.setText("The Username entered:  "+getusername());
-        password.setText("The Password entered:  "+getpassword());
+        password.setText("The Password entered:  " + getpassword());
 
-       age.setText("The Age entered:  "+getAge());
-       height.setText("The Height entered:  "+getHeight());
-       weight.setText("The Weight entered:  "+getWeight());
+       age.setText("The Age entered:  " + getAge());
+       height.setText("The Height entered:  " + getHeight());
+       weight.setText("The Weight entered:  " + getWeight());
+
 
   }
 
@@ -52,10 +57,10 @@ public class RegistrationConfirmation extends RegisterInfo {
 
 public void createUser(View v) {
 
-//    subUser.setfname(subUser,getfirstname());
-//    subUser.setlname(subUser,getlastname());
-//    subUser.setusername(subUser,getusername());
-//    subUser.setpassword(subUser,getpassword());
+    subUser.setfname(subUser, getfirstname());
+    subUser.setlname(subUser, getlastname());
+    subUser.setusername(subUser, getusername());
+    subUser.setpassword(subUser, getpassword());
 
     Intent intent = new Intent(RegistrationConfirmation.this, MainActivity.class);
     startActivity(intent);

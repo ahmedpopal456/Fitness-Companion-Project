@@ -19,7 +19,7 @@ public class SubUser extends RegisterInfo {
 	public String userName;
 	public String password;
 
-	SubUser() {
+	public SubUser() {
 
         age = 0;
         weight = 0;
