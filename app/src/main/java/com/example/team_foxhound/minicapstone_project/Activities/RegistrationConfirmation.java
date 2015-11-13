@@ -42,7 +42,7 @@ public class RegistrationConfirmation extends RegisterInfo {
         password.setText("The Password entered:  "+getpassword());
 
        age.setText("The Age entered:  "+getAge());
-       height.setText("The Heightentered:  "+getHeight());
+       height.setText("The Height entered:  "+getHeight());
        weight.setText("The Weight entered:  "+getWeight());
 
   }
@@ -51,7 +51,7 @@ public class RegistrationConfirmation extends RegisterInfo {
 
 public void createUser(View v) {
 
-    subUser.setfname(getfirstname());     ,
+    subUser.setfname(getfirstname());
     subUser.setlname(getlastname());
 
 

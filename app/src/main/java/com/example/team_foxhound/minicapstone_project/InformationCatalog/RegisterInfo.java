@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 import com.example.team_foxhound.minicapstone_project.Activities.UserInfoActivity;
 import com.example.team_foxhound.minicapstone_project.R;
@@ -37,15 +38,81 @@ public class RegisterInfo extends UserInfoActivity {
 
                 public void onClick(View view) {
 
-                    editText5=(EditText) findViewById(R.id.editText7);
-                    editText6=(EditText) findViewById(R.id.editText8);
-                    editText7=(EditText) findViewById(R.id.editText9);
+
+                    int counter=0;
+
+                    // First Name Validation
                     editText4 = (EditText) findViewById(R.id.editText6);
+                    if(null!=editText4.getText().toString() && editText4.getText().toString().length()>0){
+                        //CONTINUE
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "First Name is Empty. Please Enter a Valid Name", Toast.LENGTH_LONG).show();
+                        counter = counter+1;
+                    }
+
+                    // Last Name Validation
+                    editText5=(EditText) findViewById(R.id.editText7);
+                    if(null!=editText5.getText().toString()&&editText5.getText().toString().length()>0){
+                        //CONTINUE
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "Last Name is Empty.  Please Enter a Valid Name", Toast.LENGTH_LONG).show();
+                        counter = counter+1;
+                    }
+
+
+                 // Username Validation
+                    editText6=(EditText) findViewById(R.id.editText8);
+                    if(null!=editText6.getText().toString()&&((editText6.getText().toString().length()>6) && (editText6.getText().toString().length()<10))){
+                        //CONTINUE
+                    }
+                    else if(null!=editText6.getText().toString()&&((editText6.getText().toString().length()>10) ||(editText6.getText().toString().length()<6)) ){
+                        Toast.makeText(getApplicationContext(), "Username is Invalid. Please enter a 6 - 8 alphanumerical digit.", Toast.LENGTH_LONG).show();
+                        counter = counter+1;
+                    }
+
+                    else{ Toast.makeText(getApplicationContext(), "Username is empty. Please Enter a Valid Username", Toast.LENGTH_LONG).show();
+                        counter = counter+1; }
+
+
+
+                    //  Password Validation
+                    editText7=(EditText) findViewById(R.id.editText9); //Password
+                    editText8=(EditText) findViewById(R.id.editText10); // Confirm Password
+
+                    if(((editText7.getText().toString()!="")&&((editText7.getText().toString().length()>6) && (editText7.getText().toString().length()<10)))
+                            &&((editText8.getText().toString()!="")&&((editText8.getText().toString().length()>6) && (editText8.getText().toString().length()<10)))
+                            && (editText7.getText().toString().equals(editText8.getText().toString()))){
+
+                        //CONTINUE
+                    }
+                    else if(((editText7.getText().toString()!="")&&((editText7.getText().toString().length()>6) && (editText7.getText().toString().length()<10)))
+                            &&((editText8.getText().toString() != "")&&((editText8.getText().toString().length()>6) && (editText8.getText().toString().length()<10)))
+                            && !(editText7.getText().toString().equals(editText8.getText().toString())) ){
+
+                        Toast.makeText(getApplicationContext(), "Entered Passwords are not Equivalent. Please Verify.", Toast.LENGTH_LONG).show();
+                        counter = counter+1;
+                    }
+                    else if(((editText7.getText().toString().length()<6) || (editText7.getText().toString().length()>10))
+                            ||((editText8.getText().toString().length()<6) || (editText8.getText().toString().length()>10))){
+
+                        Toast.makeText(getApplicationContext(), "Password is Invalid. Please enter a 6 - 8 alphanumerical digit.", Toast.LENGTH_LONG).show();
+                        counter = counter+1;
+                    }
+
+                    // Only if there are no errors, can we go to next page
+
+                    if (counter==0){
+
+                        Intent intent = new Intent(RegisterInfo.this, UserInfoActivity.class);
+                        startActivity(intent);
+
+                    }
 
                 }
             });
   }
-
 
 
     // GETTER FUNCTIONS
@@ -55,13 +122,6 @@ public class RegisterInfo extends UserInfoActivity {
     public String getpassword(){return editText7.getText().toString();}
     public String getpassword2(){return editText8.getText().toString();}
 
-
-    // SETTING NEXT BUTTON
-    public void setNextButton(View v){
-
-        Intent intent = new Intent(RegisterInfo.this, UserInfoActivity.class);
-        startActivity(intent);
-    }
 
 
 }

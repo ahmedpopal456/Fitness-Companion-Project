@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.team_foxhound.minicapstone_project.InformationCatalog.RegisterInfo;
 import com.example.team_foxhound.minicapstone_project.R;
@@ -32,9 +33,47 @@ public class UserInfoActivity extends AppCompatActivity {
 
                     public void onClick(View view) {
 
-                        editText = (EditText)findViewById(R.id.editText2);
-                        editText2 = (EditText)findViewById(R.id.editText4);
-                        editText3 = (EditText)findViewById(R.id.editText5);
+
+                        int counter = 0;
+
+                        // Age Validation
+                        editText = (EditText) findViewById(R.id.editText2);
+                        if ((getAge() < 100) && (getAge() > 10)) {
+
+                            //CONTINUE
+                        } else {
+                            Toast.makeText(getApplicationContext(), "User must be of age 10 to 100", Toast.LENGTH_LONG).show();
+                            counter = counter + 1;
+                        }
+
+
+                        // Height Validation
+                        editText2 = (EditText) findViewById(R.id.editText4);
+                        if ((getHeight() > 50) && (getHeight() < 250)) {
+
+                            //CONTINUE
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Height out of Scope", Toast.LENGTH_LONG).show();
+                            counter = counter + 1;
+                        }
+
+
+                        // Weight Validation
+                        editText3 = (EditText) findViewById(R.id.editText5);
+                        if ((getWeight() > 50) && (getWeight() < 400)) {
+
+                            //CONTINUE
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Weight out of Scope", Toast.LENGTH_LONG).show();
+                            counter = counter + 1;
+                        }
+
+
+                        if (counter == 0) {
+
+                            Intent intent = new Intent(UserInfoActivity.this, RegistrationConfirmation.class);
+                            startActivity(intent);
+                        }
                     }
                 });
     }
@@ -80,12 +119,7 @@ public class UserInfoActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void setNext(View v){
 
-
-        Intent intent = new Intent(UserInfoActivity.this,RegistrationConfirmation.class);
-        startActivity(intent);
-    }
 
 
 }

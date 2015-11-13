@@ -67,18 +67,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
-        android:id="@+id/button5"
-        android:layout_gravity="center_horizontal"
-        android:onClick="setNextButton"
-        android:layout_below="@+id/button6"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="77dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Set"
         android:id="@+id/button6"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />

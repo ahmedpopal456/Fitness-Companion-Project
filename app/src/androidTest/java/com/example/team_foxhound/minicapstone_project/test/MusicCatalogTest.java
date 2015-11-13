@@ -1,5 +1,6 @@
 package com.example.team_foxhound.minicapstone_project.test;
 
+import com.example.team_foxhound.minicapstone_project.InformationCatalog.MusicCatalog;
 import com.example.team_foxhound.minicapstone_project.Interfaces.MusicCatalogInterface;
 
 import junit.framework.TestCase;
@@ -30,12 +31,13 @@ public class MusicCatalogTest extends TestCase {
     public void testgetBbm() {
         MusicCatalogInterface i = new MusicCatalog();
     }
-    }
-    public int getBbm() {
 
+    public int getBbm() {
+        return 0;
     }
 
     @Override
     public String getName() {
-        return null
+        return "";
+    }
 }
