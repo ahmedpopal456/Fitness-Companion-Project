@@ -41,44 +41,23 @@ public class SubUser extends RegisterInfo {
 //	user.setUsername(username);
 //	user.setPassword(password);*/
 
-	public void setAge(int Age){
+	public void setAge(int Age){age =Age;}
+    public void setWeight(int Weight){weight = Weight;}
+    public void setHeight(int Height) {height = Height;}
 
-		age =Age;
+    public final void modifyProfile() {}
+
+	public void setPreferences(UserPreferences preferences, int Type) {}
+
+
+	public void setfname(SubUser subUser, String s) {subUser.firstName= s;}
+	public void setlname(SubUser subUser,String s) {
+		subUser.lastName= s;
+	}
+	public void setusername(SubUser subUser,String s) {subUser.userName= s;}
+	public void setpassword(SubUser subUser,String s) {
+		subUser.password = s;
 	}
 
-
-	public void setWeight(int Weight){
-
-		weight = Weight;
-	}
-
-	public void setHeight(int Height) {
-
-		height = Height;
-
-	}
-
-	public final void modifyProfile() {
-
-	}
-
-	public void setPreferences(UserPreferences preferences, int Type) {
-
-	}
-
-	public void setfname(String s) {
-		firstName=s;
-	}
-	public void setlname(String s) {
-		lastName=s;
-	}
-	public void setusername(String s) {
-	userName= s;
-	}
-	public void setpassword(String s) {
-		password = s;
-	}
-	public String getfname(String s){
-		return firstName;
-	}
+	public String getfname(String s){return firstName;}
 }

@@ -1,5 +1,6 @@
 package com.example.team_foxhound.minicapstone_project.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.text.Editable;
@@ -51,8 +52,14 @@ public class RegistrationConfirmation extends RegisterInfo {
 
 public void createUser(View v) {
 
-    subUser.setfname(getfirstname());
-    subUser.setlname(getlastname());
+//    subUser.setfname(subUser,getfirstname());
+//    subUser.setlname(subUser,getlastname());
+//    subUser.setusername(subUser,getusername());
+//    subUser.setpassword(subUser,getpassword());
+
+    Intent intent = new Intent(RegistrationConfirmation.this, MainActivity.class);
+    startActivity(intent);
+
 
 
 }

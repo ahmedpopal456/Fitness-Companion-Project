@@ -68,7 +68,7 @@ public class RegisterInfo extends UserInfoActivity {
                         //CONTINUE
                     }
                     else if(null!=editText6.getText().toString()&&((editText6.getText().toString().length()>10) ||(editText6.getText().toString().length()<6)) ){
-                        Toast.makeText(getApplicationContext(), "Username is Invalid. Please enter a 6 - 8 alphanumerical digit.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Username is Invalid. Please enter a 6 - 10 alphanumerical digit.", Toast.LENGTH_LONG).show();
                         counter = counter+1;
                     }
 
@@ -97,7 +97,7 @@ public class RegisterInfo extends UserInfoActivity {
                     else if(((editText7.getText().toString().length()<6) || (editText7.getText().toString().length()>10))
                             ||((editText8.getText().toString().length()<6) || (editText8.getText().toString().length()>10))){
 
-                        Toast.makeText(getApplicationContext(), "Password is Invalid. Please enter a 6 - 8 alphanumerical digit.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Password is Invalid. Please enter a 6 - 10 alphanumerical digit.", Toast.LENGTH_LONG).show();
                         counter = counter+1;
                     }
 

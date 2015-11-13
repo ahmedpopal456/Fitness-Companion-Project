@@ -11,56 +11,56 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="First Name"
         android:ems="10"
-        android:id="@+id/editText6" />
+        android:id="@+id/editText6"
+        android:hint="First Name"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Last Name"
         android:ems="10"
         android:id="@+id/editText7"
         android:layout_below="@+id/editText6"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:hint="Last Name"/>
 
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Username"
         android:ems="10"
         android:id="@+id/editText8"
         android:layout_below="@+id/editText7"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:hint="Username"/>
 
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Password"
         android:ems="10"
         android:id="@+id/editText9"
         android:layout_gravity="center_horizontal"
         android:layout_below="@+id/editText8"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:hint="Password"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Confirm Password"
         android:ems="10"
         android:id="@+id/editText10"
         android:layout_below="@+id/editText9"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:hint="Confirm Password"/>
 
 
     <Button
