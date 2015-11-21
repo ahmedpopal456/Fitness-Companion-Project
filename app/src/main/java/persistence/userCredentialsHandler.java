@@ -23,11 +23,11 @@ public class userCredentialsHandler extends SQLiteOpenHelper implements UserPref
     private static final String FITNESS_TABLE_CREATE = "CREATE TABLE "
             + FITNESS_TABLE_NAME
             + " ("
-            + KEY_WORD + " TEXT PRIMARY KEY"
-            + PASSWORD + " TEXT"
-            + FIRST_NAME + " TEXT"
+            + KEY_WORD + " TEXT PRIMARY KEY,"
+            + PASSWORD + " TEXT,"
+            + FIRST_NAME + " TEXT,"
             + LAST_NAME + " TEXT"
-            + KEY_DEFINITION + " User Credentials"+");";
+            +");";
 
 
     public userCredentialsHandler(Context context) {
@@ -43,9 +43,9 @@ public class userCredentialsHandler extends SQLiteOpenHelper implements UserPref
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-    SQLiteDatabase db = this.getWritableDatabase();
 
-    public void putUserCredentials(String username, String password, String fname, String lname){
+
+    public void putUserCredentials(String username, String password, String fname, String lname, SQLiteDatabase db){
         ContentValues values = new ContentValues();
         values.put(KEY_WORD,username);
         values.put(PASSWORD,password);

@@ -1,20 +1,20 @@
 package com.example.team_foxhound.minicapstone_project.Activities;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.app.Activity;
-import android.text.Editable;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.team_foxhound.minicapstone_project.AlgorithmGenerator.AlgorithmGenerator;
 import com.example.team_foxhound.minicapstone_project.InformationCatalog.RegisterInfo;
 import com.example.team_foxhound.minicapstone_project.R;
 import com.example.team_foxhound.minicapstone_project.UserManagement.SubUser;
 
-import org.w3c.dom.Text;
+import persistence.MainHandler;
+import persistence.userCredentialsHandler;
 
-public class RegistrationConfirmation extends RegisterInfo {
+public class RegistrationConfirmation extends RegisterInfo  {
 
 
     TextView fname;
@@ -24,7 +24,11 @@ public class RegistrationConfirmation extends RegisterInfo {
     TextView age;
     TextView weight;
     TextView height;
-    SubUser subUser=  new SubUser();
+
+    MainHandler mainHandler = new MainHandler(this);
+    userCredentialsHandler handler_1 = new userCredentialsHandler(this);
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,19 +59,36 @@ public class RegistrationConfirmation extends RegisterInfo {
 
 
 
+
 public void createUser(View v) {
 
+    SubUser subUser=  new SubUser();
+    AlgorithmGenerator algorithm = new AlgorithmGenerator();
+
+
+    // Setting user's credentials
     subUser.setfname(subUser, getfirstname());
     subUser.setlname(subUser, getlastname());
     subUser.setusername(subUser, getusername());
     subUser.setpassword(subUser, getpassword());
 
+    // Setting user's information
+    subUser.setAge(getAge(), subUser);
+    subUser.setHeight(getHeight(), subUser);
+    subUser.setWeight(getWeight(), subUser);
+
+    SQLiteDatabase database = mainHandler.getWritableDatabase();
+    SQLiteDatabase database1 = handler_1.getWritableDatabase();
+
+    handler_1.putUserCredentials(getusername(),getpassword(),getfirstname(),getlastname(),database1);
+    mainHandler.putUserInfo(getAge(),getWeight(),getHeight(),getusername(),algorithm.CalculateHBmax(getAge()), database);
+
+    // Intent for the next activity
     Intent intent = new Intent(RegistrationConfirmation.this, MainActivity.class);
     startActivity(intent);
 
-
-
 }
+
 
 
 }

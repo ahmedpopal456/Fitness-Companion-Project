@@ -24,7 +24,7 @@ public class AlgorithmGeneratorTest extends TestCase {
     @Test
     public void testCalculateHBmax(){
         AlgorithmGeneratorInterface i = new AlgorithmGenerator();
-        assertEquals(i.CalculateHBmax(25,"Intermediate"),120);
+        assertEquals(i.CalculateHBmax(25),120);
     }
     @Test
     public void testCalculateTHBmax(){

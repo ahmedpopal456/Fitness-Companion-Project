@@ -9,10 +9,9 @@ package com.example.team_foxhound.minicapstone_project.InformationCatalog;////
 
 
 import com.example.team_foxhound.minicapstone_project.Interfaces.InterfaceHandler;
-import com.example.team_foxhound.minicapstone_project.Activities.MainActivity;
 import com.example.team_foxhound.minicapstone_project.UserManagement.SubUser;
 
-import persistence.Handler;
+import persistence.MainHandler;
 
 public class InfoCatalog {
     public int[] getInfo() {
@@ -26,8 +25,8 @@ public class InfoCatalog {
 
     public void storeInfo(SubUser user)
     {
-        InterfaceHandler handler=new Handler(null);
-        handler.putUserInfo(user.age,user.height,user.weight);
+        InterfaceHandler handler=new MainHandler(null);
+      //  handler.putUserInfo(user.age,user.height,user.weight, db);
 
 
     }

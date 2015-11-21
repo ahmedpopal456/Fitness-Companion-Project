@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+// This does not break the build when Android Studio is missing the JRebel for Android plugin.
+apply plugin: 'com.zeroturnaround.jrebel.android'
 
 android {
     compileSdkVersion 23
@@ -32,4 +34,6 @@ dependencies {
     compile 'com.android.support:design:23.1.0'
     compile 'com.google.android.gms:play-services:8.1.0'
     compile 'com.android.support:support-v4:23.1.0'
+    compile 'com.jjoe64:graphview:4.0.1'
+
 }

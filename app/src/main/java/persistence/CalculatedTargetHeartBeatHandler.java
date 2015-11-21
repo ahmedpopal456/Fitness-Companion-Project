@@ -14,15 +14,12 @@ public class CalculatedTargetHeartBeatHandler extends SQLiteOpenHelper implement
     private static final String FITNESS_TABLE_NAME = "calculatedtargetheartbeat";
     private static final String KEY_WORD = "username";
     private static final String HEART_BEAT ="heartbeat";
-//    private static final String WEIGHT="weight";
-//    private static final String HEIGHT="height";
-    private static final String KEY_DEFINITION = "";
     private static final String FITNESS_TABLE_CREATE = "CREATE TABLE "
             + FITNESS_TABLE_NAME
             + " ("
-            + KEY_WORD + " TEXT PRIMARY KEY"
+            + KEY_WORD + " TEXT PRIMARY KEY,"
             + HEART_BEAT + " INTEGER"
-            + KEY_DEFINITION + " User Credentials"+");";
+            + ");";
 
 
     public CalculatedTargetHeartBeatHandler(Context context) {
@@ -38,8 +35,9 @@ public class CalculatedTargetHeartBeatHandler extends SQLiteOpenHelper implement
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-    SQLiteDatabase db = this.getWritableDatabase();
-    public void putCalculatedTargetHeartBeat(int heartbeat){
+
+    public void putCalculatedTargetHeartBeat(int heartbeat,SQLiteDatabase db ){
+
         ContentValues values = new ContentValues();
         values.put(HEART_BEAT,heartbeat);
         db.insert(FITNESS_TABLE_NAME, null, values);

@@ -8,19 +8,25 @@ package com.example.team_foxhound.minicapstone_project.AlgorithmGenerator;//
 //
 
 
+import com.example.team_foxhound.minicapstone_project.Activities.RegistrationConfirmation;
 import com.example.team_foxhound.minicapstone_project.Interfaces.AlgorithmGeneratorInterface;
 import com.example.team_foxhound.minicapstone_project.UserManagement.UserPreferences;
 
 import android.os.Vibrator;
-public class AlgorithmGenerator implements AlgorithmGeneratorInterface {
-    private Object HBcurrFromSensor;
+public class AlgorithmGenerator   extends RegistrationConfirmation implements AlgorithmGeneratorInterface {
 
-    public int CalculateHBmax(Object age,String workoutType) {
-    int sample=0;
-        return sample;
+
+    public int CalculateHBmax(int age) { // String workoutType, aerdd aft
+
+        int HBMAX;
+        HBMAX = 220 - age;
+
+        return HBMAX;
 	}
 
+
 	public int CalculateTHBmax(int HBmax, UserPreferences preferences) {
+
         int sample2=0;
         return sample2;
 	}

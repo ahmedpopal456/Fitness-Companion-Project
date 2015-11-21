@@ -7,7 +7,7 @@ import com.example.team_foxhound.minicapstone_project.UserManagement.UserPrefere
  */
 public interface AlgorithmGeneratorInterface {
 
-    public int CalculateHBmax(Object age, String workoutType);
+    public int CalculateHBmax(int age);
 
     public int CalculateTHBmax(int HBmax, UserPreferences preferences);
 

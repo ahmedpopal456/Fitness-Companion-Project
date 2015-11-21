@@ -41,9 +41,9 @@ public class SubUser extends RegisterInfo {
 //	user.setUsername(username);
 //	user.setPassword(password);*/
 
-	public void setAge(int Age){age =Age;}
-    public void setWeight(int Weight){weight = Weight;}
-    public void setHeight(int Height) {height = Height;}
+	public void setAge(int Age,SubUser subUser ){subUser.age =Age;}
+    public void setWeight(int Weight,SubUser subUser){subUser.weight = Weight;}
+    public void setHeight(int Height,SubUser subUser) {subUser.height = Height;}
 
     public final void modifyProfile() {}
 
