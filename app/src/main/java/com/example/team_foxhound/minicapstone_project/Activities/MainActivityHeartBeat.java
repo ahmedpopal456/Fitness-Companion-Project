@@ -465,10 +465,10 @@ final Handler Newhandler = new Handler(){
     }
 
 
-    public boolean onKeyDown(int keyCode, KeyEvent event,MediaPlayer mediaPlayer) {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             exitByBackKey();
-            mediaPlayer.stop();
+          //  mediaPlayer.stop();
             //moveTaskToBack(false);
 
             return true;
@@ -480,18 +480,16 @@ final Handler Newhandler = new Handler(){
 
     protected void exitByBackKey() {
 
-        AlertDialog alertbox = new AlertDialog.Builder(this)
+
+
+                AlertDialog alertbox = new AlertDialog.Builder(this)
 
                 .setMessage("Do you want to sign out of the application?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 
                     // do something when the button is clicked
                     public void onClick(DialogInterface arg0, int arg1) {
-
                         finish();
-                        //close();
-
-
                     }
                 })
 

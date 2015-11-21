@@ -104,9 +104,9 @@
         android:text="Music  "
         android:id="@+id/switch1"
         android:checked="false"
-        android:layout_above="@+id/toggleButton"
-        android:layout_alignRight="@+id/toggleButton"
-        android:layout_alignEnd="@+id/toggleButton" />
+        android:layout_above="@+id/labelHeartRate"
+        android:layout_alignRight="@+id/labelHeartRate"
+        android:layout_alignEnd="@+id/labelHeartRate" />
 
     <ToggleButton
         android:layout_width="wrap_content"

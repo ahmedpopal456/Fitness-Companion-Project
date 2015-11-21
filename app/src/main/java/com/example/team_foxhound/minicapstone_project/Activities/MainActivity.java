@@ -1,11 +1,14 @@
 package com.example.team_foxhound.minicapstone_project.Activities;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +22,6 @@ import com.example.team_foxhound.minicapstone_project.UserManagement.SuperUser;
 import persistence.userCredentialsHandler;
 
 public class MainActivity extends AppCompatActivity {
-    public Context contextnew;
     public static EditText editText; // password
     public static EditText editText3; // username
 
@@ -29,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        contextnew=getApplicationContext();
 
 
     }
@@ -56,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+
+    // Check ON LOGIN information
     public void setLogin(View v) {
 
         // SET EDIT BOXES
@@ -66,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         userCredentialsHandler handler = new userCredentialsHandler(this);
         SQLiteDatabase db = handler.getReadableDatabase();
 
-
+        // SET CURSORS TO READ FROM DB
         Cursor cursor = db.rawQuery("SELECT * FROM " + "usercredentials ", null);
         startManagingCursor(cursor);
         int counter = 0;
@@ -80,13 +84,16 @@ public class MainActivity extends AppCompatActivity {
             readUsername = cursor.getString(0);
             readPassword = cursor.getString(1);
 
-            if ((editText.getText().toString().equals(readPassword)) && (editText3.getText().toString().equals(readUsername))) {
+            if ((editText.getText().toString().equals(readPassword)) && (editText3.getText().toString().equals(readUsername))) { // IF PASSWORD AND USERNAME ARE STORED
 
 
-                Intent intent = new Intent(MainActivity.this, MainActivityHeartBeat.class);
-                intent.putExtra("username",readUsername);
+                Intent intent = new Intent(MainActivity.this, MainActivityHeartBeat.class);        // MOVE TO NEXT PAGE
+                intent.putExtra("username", readUsername);                                          // SEND USER INFO WITH THE INTENT
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);                                 // REMOVING THE DEFAULT ANIMATION
+//                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 startActivity(intent);
                 counter++;
+
 
             }
 
@@ -108,6 +115,43 @@ public class MainActivity extends AppCompatActivity {
     public void setPassword(View v) {
         editText3 = (EditText) findViewById((R.id.editText3));
         superUser.setPassword(editText3);
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exitByBackKey();
+
+            //moveTaskToBack(false);
+
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
+
+    protected void exitByBackKey() {
+
+        AlertDialog alertbox = new AlertDialog.Builder(this)
+
+                .setMessage("Do you want to exit application?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                    // do something when the button is clicked
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        finish();
+                    }
+                })
+
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                    // do something when the button is clicked
+                    public void onClick(DialogInterface arg0, int arg1) {
+                    }
+                })
+                .show();
+
     }
 
 }

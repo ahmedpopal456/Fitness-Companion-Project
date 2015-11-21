@@ -15,10 +15,12 @@ import com.example.team_foxhound.minicapstone_project.R;
 import com.example.team_foxhound.minicapstone_project.UserManagement.SubUser;
 
 public class UserInfoActivity extends AppCompatActivity {
-        public static Button CLICK;
-        public static EditText editText;
-        public static EditText editText2;
-        public static EditText editText3;
+
+    //        public static UserInfoActivity activityB;
+    public static Button CLICK;
+    public static EditText editText;
+    public static EditText editText2;
+    public static EditText editText3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +28,11 @@ public class UserInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_info);
 
 
+//        activityB = this;
+
         CLICK = (Button) findViewById(R.id.button7);
         CLICK.setOnClickListener(
+
 
                 new View.OnClickListener() {
 
@@ -73,6 +78,8 @@ public class UserInfoActivity extends AppCompatActivity {
 
                             Intent intent = new Intent(UserInfoActivity.this, RegistrationConfirmation.class);
                             startActivity(intent);
+                            RegisterInfo.getInstance().finish();
+                            finish();
                         }
                     }
                 });
@@ -107,9 +114,7 @@ public class UserInfoActivity extends AppCompatActivity {
     public int getAge(){
         return Integer.valueOf(editText.getText().toString()).intValue();
     }
-    public int getHeight(){
-        return Integer.valueOf(editText2.getText().toString()).intValue();
-    }
+    public int getHeight(){return Integer.valueOf(editText2.getText().toString()).intValue();}
     public int getWeight(){return Integer.valueOf(editText3.getText().toString()).intValue();}
 
 
@@ -119,7 +124,10 @@ public class UserInfoActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+//    public static UserInfoActivity getInstance2( ){
+//
+//        return   activityB;
+//    }
 
 
 }
