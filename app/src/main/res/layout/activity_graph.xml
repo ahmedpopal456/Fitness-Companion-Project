@@ -10,9 +10,9 @@
 
     <com.jjoe64.graphview.GraphView
         android:layout_width="match_parent"
-        android:layout_height="200dip"
+        android:layout_height="270dip"
         android:id="@+id/graph"
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="00dp"
         android:layout_below="@+id/ImageView01"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -32,4 +32,34 @@
         android:text="Take Screenshot"
         android:id="@+id/ImageView01"
         android:layout_alignParentTop="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Average HB: "
+        android:id="@+id/textView21"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/textView22"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/textView21"
+        android:layout_toEndOf="@+id/textView21" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="%"
+        android:id="@+id/textView23"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/button5"
+        android:layout_toStartOf="@+id/button5" />
 </RelativeLayout>

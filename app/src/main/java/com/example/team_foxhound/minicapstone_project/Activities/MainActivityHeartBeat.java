@@ -51,7 +51,7 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
     HbHandler mainHandler1 = new HbHandler(this);
 
-    static boolean record;
+    boolean record = false;
     static int keepingtrack;
     static int HBMAX1;  // HBMAX
     static int HBMAX2;  // HBMAX
@@ -78,7 +78,7 @@ public class MainActivityHeartBeat extends AppCompatActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Bundle extras = getIntent().getExtras();
-        String username = extras.getString("username");
+        final String username = extras.getString("username");
         username1 = username;
         keepingtrack =0;
 
@@ -127,7 +127,7 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                     _NConnListener = new NewConnectedListener(Newhandler, Newhandler);
                     _bt.addConnectedEventListener(_NConnListener);
 
-                    TextView tv1 = (EditText) findViewById(R.id.labelHeartRate);
+                    TextView tv1 = (TextView) findViewById(R.id.labelHeartRate);
                     tv1.setText("000");
 
 //                    tv1 = (EditText) findViewById(R.id.labelInstantSpeed);
@@ -193,13 +193,13 @@ public class MainActivityHeartBeat extends AppCompatActivity {
         startManagingCursor(cursor);
 
 
-        String HBMAX;
+        final String HBMAX;
         textView = (TextView) findViewById(R.id.textView18);
         while (cursor.moveToNext()) {
 
             if (cursor.getString(0).equals(username1)) {
 
-                HBMAX = cursor.getString(4);
+               // HBMAX = cursor.getString(4);
                 HBMAX1 = (int) (cursor.getDouble(4)*0.6);
                 HBMAX2 = (int) (cursor.getDouble(4));
 
@@ -284,13 +284,15 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
                 AlertDialog alertbox = new AlertDialog.Builder(MainActivityHeartBeat.this)
 
-                        .setMessage("Do you want to view your progress for this session?")
+                        .setMessage("Do you want to view progress of this session? Details will be stored in your ProgressView")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 
                             // do something when the button is clicked
                             public void onClick(DialogInterface arg0, int arg1) {
 
                                 Intent intent  = new Intent(MainActivityHeartBeat.this, Graph.class);
+                                intent.putExtra("targethb", HBMAX1);
+                                intent.putExtra("username1",username);
                                 startActivity(intent);
 
 
@@ -301,6 +303,7 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
                             public void onClick(DialogInterface arg0, int arg1) {
 
+                                record = false;
                                 HbHandler mainhandler = new HbHandler(MainActivityHeartBeat.this);
                                 SQLiteDatabase database = mainhandler.getReadableDatabase();
                                 mainhandler.deletetable(database);
@@ -376,7 +379,7 @@ final Handler Newhandler = new Handler(){
             case HEART_RATE:
 
                 String HeartRatetext = msg.getData().getString("HeartRate");
-                tv = (EditText)findViewById(R.id.labelHeartRate);
+                tv = (TextView)findViewById(R.id.labelHeartRate);
 
 //======================================================================================================== MAIN FUNCTIONALITY
                 // VIBRATE WHEN HB SURPASSES TARGET HB (ONLY ONCE)
@@ -397,7 +400,7 @@ final Handler Newhandler = new Handler(){
 
                 SQLiteDatabase database = mainHandler1.getWritableDatabase();
 
-                if(record = true) {
+                if(record == true) {
 
                     mainHandler1.putHb(absolute(Integer.valueOf(tv.getText().toString()).intValue()), database);
 
@@ -423,7 +426,11 @@ final Handler Newhandler = new Handler(){
 //========================================================================================================
 
                 System.out.println("Heart Rate Info is " + HeartRatetext);
-                if (tv != null)tv.setText(Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())));
+
+                if(Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())).length()==3){tv.setText(Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())));}
+                if(Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())).length()==2) {tv.setText("0"+ Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())));}
+                if(Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())).length()==1) {tv.setText("00"+ Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())));}
+
                 break;
 
             case INSTANT_SPEED:

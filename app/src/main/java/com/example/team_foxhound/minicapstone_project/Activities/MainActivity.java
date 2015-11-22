@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(MainActivity.this, MainActivityHeartBeat.class);        // MOVE TO NEXT PAGE
                 intent.putExtra("username", readUsername);                                          // SEND USER INFO WITH THE INTENT
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);                                 // REMOVING THE DEFAULT ANIMATION
+               // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);                                 // REMOVING THE DEFAULT ANIMATION
 //                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 startActivity(intent);
                 counter++;
