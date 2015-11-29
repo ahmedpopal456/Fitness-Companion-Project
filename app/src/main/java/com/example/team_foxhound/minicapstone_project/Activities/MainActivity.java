@@ -87,11 +87,12 @@ public class MainActivity extends AppCompatActivity {
             if ((editText.getText().toString().equals(readPassword)) && (editText3.getText().toString().equals(readUsername))) { // IF PASSWORD AND USERNAME ARE STORED
 
 
-                Intent intent = new Intent(MainActivity.this, MainActivityHeartBeat.class);        // MOVE TO NEXT PAGE
+                Intent intent = new Intent(MainActivity.this, MainHub.class);        // MOVE TO NEXT PAGE
                 intent.putExtra("username", readUsername);                                          // SEND USER INFO WITH THE INTENT
                // intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);                                 // REMOVING THE DEFAULT ANIMATION
 //                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 startActivity(intent);
+                finish();
                 counter++;
 
 

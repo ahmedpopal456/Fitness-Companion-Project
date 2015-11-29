@@ -50,6 +50,8 @@ public class Graph extends AppCompatActivity  {
 
     RelativeLayout R1;
     int i =0;
+    HBInfoHandler mainhandler_main = new HBInfoHandler(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class Graph extends AppCompatActivity  {
         Bundle extras = getIntent().getExtras();
         int targethb = extras.getInt("targethb");
         String username = extras.getString("username1");
+
 
 
 //============================================================================================================== SHOW GRAPH WITH THE REAL-TIME VALUES TAKEN IN EARLIER
@@ -98,8 +101,8 @@ public class Graph extends AppCompatActivity  {
 
         series.setTitle("Current HB");
         series2.setTitle("Target HB");
-        series3.setTitle("HB");
-        series4.setTitle("Range");
+        series3.setTitle("Recommended");
+        series4.setTitle("HB Range");
 
         graph.getLegendRenderer().setVisible(true);
         graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
@@ -168,8 +171,12 @@ public class Graph extends AppCompatActivity  {
         graph.addSeries(series4);
 
 
-        textView.setText(Double.toString(averageHB/counter1));
-        textView2.setText((Double.toString(counter2/counter))+" %");
+        textView.setText((Double.toString(averageHB/counter1)).substring(0,6));
+
+        if((Double.toString(counter2/counter)).length() >6){
+        textView2.setText((Double.toString(counter2/counter)).substring(0,6)+" %");}
+
+        else{ textView2.setText((Double.toString(counter2/counter))+" %");}
 
 
 
@@ -178,7 +185,14 @@ public class Graph extends AppCompatActivity  {
         mainhandler.close();
 //
 
-//==============================================================================================================    STORE GRAPH SCREENSHOT
+//==============================================================================================================   STORE DETAILS IN DATABASE
+
+        SQLiteDatabase database_new = mainhandler_main.getWritableDatabase();
+        mainhandler_main.putHb((averageHB / counter1), (counter2 / counter), username, dateFormat.format(cal.getTime()), database_new);
+        Toast.makeText(getApplicationContext(), "Details of this session have been saved", Toast.LENGTH_LONG).show();
+
+
+        //============================================================================================================== STORE GRAPH SCREENSHOT
 
 
         Button but = (Button) findViewById(R.id.button5);
@@ -191,7 +205,6 @@ public class Graph extends AppCompatActivity  {
                 View v1 = R1.getRootView();
                 v1.setDrawingCacheEnabled(true);
                 Bitmap bm = v1.getDrawingCache();
-
 
 
                 String filename = "screenshot" + i + ".jpg";
@@ -223,21 +236,11 @@ public class Graph extends AppCompatActivity  {
                 }
 
 
-
             }
 
 
         });
 
-        //============================================================================================================== STORE DETAILS IN DATABASE
-
-         HBInfoHandler mainhandler_main = new HBInfoHandler(this);
-         SQLiteDatabase database_new = mainhandler_main.getReadableDatabase();
-         mainhandler_main.putHb((averageHB/counter1),(counter2/counter),username,dateFormat.format(cal.getTime()),database_new);
-        Toast.makeText(getApplicationContext(), "Details of this session have been saved", Toast.LENGTH_LONG).show();
-
-
-        graph.destroyDrawingCache();
 
         //==============================================================================================================
 

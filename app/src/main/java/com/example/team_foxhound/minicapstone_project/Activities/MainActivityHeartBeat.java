@@ -51,7 +51,7 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
     HbHandler mainHandler1 = new HbHandler(this);
 
-    boolean record = false;
+    static boolean record = false;
     static int keepingtrack;
     static int HBMAX1;  // HBMAX
     static int HBMAX2;  // HBMAX
@@ -78,7 +78,7 @@ public class MainActivityHeartBeat extends AppCompatActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Bundle extras = getIntent().getExtras();
-        final String username = extras.getString("username");
+        final String username = extras.getString("username3");
         username1 = username;
         keepingtrack =0;
 
@@ -303,7 +303,6 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
                             public void onClick(DialogInterface arg0, int arg1) {
 
-                                record = false;
                                 HbHandler mainhandler = new HbHandler(MainActivityHeartBeat.this);
                                 SQLiteDatabase database = mainhandler.getReadableDatabase();
                                 mainhandler.deletetable(database);
@@ -367,8 +366,6 @@ private class BTBroadcastReceiver extends BroadcastReceiver {
 }
 
 
-
-
 final Handler Newhandler = new Handler(){
     public void handleMessage(Message msg)
     {
@@ -400,7 +397,7 @@ final Handler Newhandler = new Handler(){
 
                 SQLiteDatabase database = mainHandler1.getWritableDatabase();
 
-                if(record == true) {
+                if(record = true) {
 
                     mainHandler1.putHb(absolute(Integer.valueOf(tv.getText().toString()).intValue()), database);
 
@@ -430,7 +427,6 @@ final Handler Newhandler = new Handler(){
                 if(Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())).length()==3){tv.setText(Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())));}
                 if(Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())).length()==2) {tv.setText("0"+ Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())));}
                 if(Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())).length()==1) {tv.setText("00"+ Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())));}
-
                 break;
 
             case INSTANT_SPEED:
@@ -472,41 +468,6 @@ final Handler Newhandler = new Handler(){
     }
 
 
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            exitByBackKey();
-          //  mediaPlayer.stop();
-            //moveTaskToBack(false);
-
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
 
 
-
-    protected void exitByBackKey() {
-
-
-
-                AlertDialog alertbox = new AlertDialog.Builder(this)
-
-                .setMessage("Do you want to sign out of the application?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-
-                    // do something when the button is clicked
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        finish();
-                    }
-                })
-
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-
-                    // do something when the button is clicked
-                    public void onClick(DialogInterface arg0, int arg1) {
-                    }
-                })
-                .show();
-
-    }
 }

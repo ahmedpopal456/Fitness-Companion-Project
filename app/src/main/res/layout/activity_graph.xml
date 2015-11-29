@@ -20,11 +20,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
+        android:text="Save Chart"
         android:id="@+id/button5"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignBaseline="@+id/textView23"
+        android:layout_alignBottom="@+id/textView23"
+        android:layout_alignRight="@+id/graph"
+        android:layout_alignEnd="@+id/graph" />
 
     <ImageView
         android:layout_width="fill_parent"
@@ -41,13 +42,13 @@
         android:id="@+id/textView21"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
         android:id="@+id/textView22"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/textView21"
@@ -60,6 +61,17 @@
         android:text="%"
         android:id="@+id/textView23"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/button5"
-        android:layout_toStartOf="@+id/button5" />
+        android:layout_toRightOf="@+id/textView24"
+        android:layout_toEndOf="@+id/textView24" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="     OnTarget: "
+        android:id="@+id/textView24"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/textView22"
+        android:layout_toEndOf="@+id/textView22"
+        android:textStyle="bold|italic" />
 </RelativeLayout>

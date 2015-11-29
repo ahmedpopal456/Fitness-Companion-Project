@@ -1,3 +1,4 @@
+
 <resources>
     <string name="app_name">MiniCapstone_Project</string>
     <string name="app_name2">Fitness Companion</string>
@@ -28,4 +29,9 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_registration_confirmation">registration_confirmation</string>
     <string name="title_activity_graph">Graph</string>
+    <string name="title_activity_progress_view">ProgressView</string>
+    <string name="title_activity_main_hub">MainHub</string>
+    <string name="opendrawer">Open</string>
+    <string name="closedrawer">Close</string>
+
 </resources>

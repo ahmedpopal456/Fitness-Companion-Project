@@ -59,12 +59,6 @@ public class HBInfoHandler extends SQLiteOpenHelper {
 
     }
 
-    public void deletetable(SQLiteDatabase db){
-
-        db.execSQL("DELETE FROM " + TABLE_NAME);
-        db.close();
-    }
-
 
 //    public void putUserCredentials(){
 //
