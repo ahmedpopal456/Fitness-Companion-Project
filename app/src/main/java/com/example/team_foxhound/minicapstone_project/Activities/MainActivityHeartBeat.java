@@ -16,24 +16,18 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-import android.widget.CompoundButton;
 
-import com.example.team_foxhound.minicapstone_project.InformationCatalog.RegisterInfo;
 import com.example.team_foxhound.minicapstone_project.R;
 
 import java.lang.reflect.InvocationTargetException;
@@ -42,7 +36,6 @@ import java.util.Set;
 
 import persistence.HbHandler;
 import persistence.MainHandler;
-import persistence.userCredentialsHandler;
 import zephyr.android.HxMBT.BTClient;
 import zephyr.android.HxMBT.ZephyrProtocol;
 
@@ -57,6 +50,8 @@ public class MainActivityHeartBeat extends AppCompatActivity {
     static int HBMAX2;  // HBMAX
     String username1;
     TextView textView;
+    static int musicplayerstatus;
+
 
 
 
@@ -238,27 +233,21 @@ public class MainActivityHeartBeat extends AppCompatActivity {
         });
 
 
-//
-//        //Toggle Music
-//        final MediaPlayer mediaplayer = MediaPlayer.create(this,R.raw.lol);
-//        final Switch mySwitch = (Switch) findViewById(R.id.switch1);
-//        mySwitch.setChecked(false);
-//        mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                int counter = 0;
-//                while (counter==0) {
-//                    if (mySwitch.isChecked()) {
-//                        mediaplayer.start();
-//                        counter++;
-//                    } else {
-//                        mediaplayer.pause();
-//                        counter--;
-//                    }
-//                }
-//            }
-//        });
 
+        //#############################################################################################        Toggle Music and Call it in Handler Method
 
+        final Switch mySwitch = (Switch) findViewById(R.id.switch1);
+        mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (mySwitch.isChecked()==true) {
+                        musicplayerstatus=0;
+                    } else if(mySwitch.isChecked()==false){
+                        musicplayerstatus=1;
+                    }
+                }
+        });
+
+        //#############################################################################################
 
 //    }
 
@@ -377,22 +366,30 @@ final Handler Newhandler = new Handler(){
 
                 String HeartRatetext = msg.getData().getString("HeartRate");
                 tv = (TextView)findViewById(R.id.labelHeartRate);
+                final MediaPlayer mediaplayerHigh = MediaPlayer.create(MainActivityHeartBeat.this,R.raw.lol);
+                final MediaPlayer mediaplayerLow = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol2);
 
 //======================================================================================================== MAIN FUNCTIONALITY
                 // VIBRATE WHEN HB SURPASSES TARGET HB (ONLY ONCE)
-                if((absolute(Integer.valueOf(tv.getText().toString()).intValue()) > HBMAX1) && (keepingtrack==0)){
-
+                if((absolute(Integer.valueOf(tv.getText().toString()).intValue()) > HBMAX1) && (keepingtrack==0)&&(musicplayerstatus==0)){
+                    mediaplayerLow.stop();
+                    mediaplayerHigh.start();
                     vibrate_main();
                     keepingtrack++;
                 }
 
                 // VIBRATE WHEN HB GOES BELOW TARGET HB (ONLY ONCE)
-                if((absolute(Integer.valueOf(tv.getText().toString()).intValue()) < HBMAX1) && (keepingtrack ==1)) {
-
+                else if((absolute(Integer.valueOf(tv.getText().toString()).intValue()) < HBMAX1) && (keepingtrack ==1)&&(musicplayerstatus==0)) {
+                    mediaplayerHigh.stop();
+                    mediaplayerLow.start();
                     vibrate_main();
                     keepingtrack =0;
 
                 }
+                else if (musicplayerstatus==1) {
+
+                         mediaplayerLow.stop();mediaplayerHigh.stop();
+                    }
 //========================================================================================================  HB DATABASE STORING + GRAPH (SECONDARY FUNCTIONALITY)
 
                 SQLiteDatabase database = mainHandler1.getWritableDatabase();
