@@ -20,7 +20,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save Chart"
+        android:text="Save Details"
         android:id="@+id/button5"
         android:layout_alignBaseline="@+id/textView23"
         android:layout_alignBottom="@+id/textView23"
