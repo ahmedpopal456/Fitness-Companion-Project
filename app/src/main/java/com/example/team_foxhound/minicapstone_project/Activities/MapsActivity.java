@@ -1,7 +1,10 @@
 package com.example.team_foxhound.minicapstone_project.Activities;
 
-import android.support.v4.app.FragmentActivity;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.team_foxhound.minicapstone_project.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -10,10 +13,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private GoogleMap nMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +44,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        nMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        // Add a marker in Montreal and move the camera
+        LatLng montreal = new LatLng(45.5017, -73.5673);
+        LatLng montreal2 = new LatLng(45.4500,-73.5850);
+
+        mMap.addMarker(new MarkerOptions().position(montreal).title("Starting Point").draggable(true));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(montreal));
+        mMap.setMyLocationEnabled(true);
+        mMap.getMaxZoomLevel();
+        
+
+        nMap.addMarker(new MarkerOptions().position(montreal2).title("End Point").draggable(true));
+        nMap.moveCamera(CameraUpdateFactory.newLatLng(montreal2));
+        nMap.getMaxZoomLevel();
+
+
+        Polyline line = mMap.addPolyline(new PolylineOptions()
+                .add(montreal, montreal2)
+                .width(5).color(Color.RED));
+       line.isVisible();
     }
-}
+
+
+//    FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.fab);
+
+
+        public void setdirections(View v) {
+            Toast.makeText(getApplicationContext(), "Get Directions", Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+
