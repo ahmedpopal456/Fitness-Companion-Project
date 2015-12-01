@@ -20,10 +20,10 @@ public class HBInfoHandler extends SQLiteOpenHelper {
 
 
     // private static final String KEY_DEFINITION = "";
-    public static final String FITNESS_TABLE_CREATE = "CREATE TABLE "
+    public static final String FITNESS_TABLE = "CREATE TABLE "
             + TABLE_NAME
             + " ("
-            + KEY_WORD + " TEXT PRIMARY KEY,"
+            + KEY_WORD + " TEXT,"
             + HEART_BEAT_AVERAGE + " DOUBLE,"
             + ON_TARGET + " DOUBLE,"
             + DATE + " TEXT"
@@ -36,13 +36,13 @@ public class HBInfoHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(FITNESS_TABLE_CREATE);
+        db.execSQL(FITNESS_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        db.execSQL("DROP TABLE IF EXISTS "   + FITNESS_TABLE_CREATE);
+        db.execSQL("DROP TABLE IF EXISTS "   + FITNESS_TABLE);
         onCreate(db);
 
     }

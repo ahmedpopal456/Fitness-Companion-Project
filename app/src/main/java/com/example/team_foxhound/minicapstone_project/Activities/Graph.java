@@ -47,10 +47,12 @@ import persistence.userCredentialsHandler;
 public class Graph extends AppCompatActivity  {
 
 
+//    HBInfoHandler mainhandler_main = new HBInfoHandler(Graph.this);
 
     RelativeLayout R1;
     int i =0;
-    HBInfoHandler mainhandler_main = new HBInfoHandler(this);
+
+
 
 
     @Override
@@ -58,9 +60,12 @@ public class Graph extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+
         Bundle extras = getIntent().getExtras();
         int targethb = extras.getInt("targethb");
-        String username = extras.getString("username1");
+        final String username = extras.getString("username1");
+
 
 
 
@@ -136,10 +141,10 @@ public class Graph extends AppCompatActivity  {
         Cursor cursor = database.rawQuery("SELECT * FROM " + "heartbeat ", null);
         startManagingCursor(cursor);
 
-        double counter =0.0;     // counter for time
-        double counter2 = 0.0;  // counter for comparison
-        int counter1=0;         // how much data was collected
-        double averageHB =0;   // add all the data in it
+      double counter =0.0;     // counter for time
+      double counter2 = 0.0;  // counter for comparison
+      int counter1=0;         // how much data was collected
+      double averageHB =0;   // add all the data in it
 
         TextView textView = (TextView) findViewById(R.id.textView22);
         TextView textView2 = (TextView) findViewById(R.id.textView23);
@@ -170,35 +175,43 @@ public class Graph extends AppCompatActivity  {
         graph.addSeries(series3);
         graph.addSeries(series4);
 
+        final String username_copy = username;
+        final double counter_copy = counter;
+        final double counter2_copy = counter2;
+        final int counter1_copy = counter1;
+        final double averageHB_copy = averageHB;
+
 
         textView.setText((Double.toString(averageHB/counter1)).substring(0,6));
 
         if((Double.toString(counter2/counter)).length() >6){
         textView2.setText((Double.toString(counter2/counter)).substring(0,6)+" %");}
 
-        else{ textView2.setText((Double.toString(counter2/counter))+" %");}
+        else{textView2.setText((Double.toString(counter2/counter))+" %");}
 
 
 
-        cursor.close();
-        database.close();
-        mainhandler.close();
+//        cursor.close();
+//        database.close();
+//        mainhandler.close();
 //
 
 //==============================================================================================================   STORE DETAILS IN DATABASE
+//        Toast.makeText(getApplicationContext(), "Details of this session have been saved", Toast.LENGTH_LONG).show();
+//
+//        HBInfoHandler mainhandler_main = new HBInfoHandler(this);
+//        SQLiteDatabase database_new = mainhandler_main.getWritableDatabase();
+//        mainhandler_main.putHb((averageHB / counter1), (counter2 / counter), username, dateFormat.format(cal.getTime()), database_new);
+//
+//        mainhandler_main.close();
 
-        SQLiteDatabase database_new = mainhandler_main.getWritableDatabase();
-        mainhandler_main.putHb((averageHB / counter1), (counter2 / counter), username, dateFormat.format(cal.getTime()), database_new);
-        Toast.makeText(getApplicationContext(), "Details of this session have been saved", Toast.LENGTH_LONG).show();
 
-
-        //============================================================================================================== STORE GRAPH SCREENSHOT
+        //============================================================================================================== STORE GRAPH SCREENSHOT +  STORE DETAILS IN DATABASE
 
 
         Button but = (Button) findViewById(R.id.button5);
         but.setOnClickListener(new View.OnClickListener() {
 
-            @Override
             public void onClick(View v) {
 
                 R1 = (RelativeLayout) findViewById(R.id.Relative);
@@ -228,12 +241,23 @@ public class Graph extends AppCompatActivity  {
                         bm.compress(Bitmap.CompressFormat.PNG, 85, fOut);
                         fOut.flush();
                         fOut.close();
-                        Toast.makeText(Graph.this, "File exported to /sdcard/ScreenShots/screenshot" + i + ".jpg", Toast.LENGTH_SHORT).show();
 
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
+
+                DateFormat dateFormat2 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                Date date = new Date();
+                Calendar cal = Calendar.getInstance();
+
+
+                HBInfoHandler mainhandler_main = new HBInfoHandler(Graph.this);
+                SQLiteDatabase database_new = mainhandler_main.getWritableDatabase();
+                mainhandler_main.putHb((averageHB_copy / counter1_copy), (counter2_copy / counter_copy), username_copy, dateFormat2.format(cal.getTime()), database_new);
+
+                Toast.makeText(getApplicationContext(), "Details and Chart of this session have been saved", Toast.LENGTH_LONG).show();
+
 
 
             }
@@ -298,7 +322,6 @@ public class Graph extends AppCompatActivity  {
                                 HbHandler mainhandler = new HbHandler(Graph.this);
                                 SQLiteDatabase database = mainhandler.getReadableDatabase();
                                 mainhandler.deletetable(database);
-
                                 finish();
 
                             }

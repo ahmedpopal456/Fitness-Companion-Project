@@ -273,7 +273,7 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
                 AlertDialog alertbox = new AlertDialog.Builder(MainActivityHeartBeat.this)
 
-                        .setMessage("Do you want to view progress of this session? Details will be stored in your ProgressView")
+                        .setMessage("Do you want to view progress of this session?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 
                             // do something when the button is clicked
@@ -283,6 +283,7 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                                 intent.putExtra("targethb", HBMAX1);
                                 intent.putExtra("username1",username);
                                 startActivity(intent);
+                                finish();
 
 
                             }
