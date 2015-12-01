@@ -1,6 +1,6 @@
 package com.example.team_foxhound.minicapstone_project.Activities;
 
-import android.graphics.Color;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
@@ -12,9 +12,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polyline;
-import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -25,6 +24,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -41,40 +41,56 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         nMap = googleMap;
 
         // Add a marker in Montreal and move the camera
-        LatLng montreal = new LatLng(45.5017, -73.5673);
-        LatLng montreal2 = new LatLng(45.4500,-73.5850);
 
-        mMap.addMarker(new MarkerOptions().position(montreal).title("Starting Point").draggable(true));
+        LatLng montreal = new LatLng(45.5017, -73.5673);
+//        mMap.addMarker(new MarkerOptions().position(montreal).title("Starting Point").draggable(true));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(montreal));
         mMap.setMyLocationEnabled(true);
-        mMap.getMaxZoomLevel();
-        
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(45.5017,-73.5673), 12.0f));
 
-        nMap.addMarker(new MarkerOptions().position(montreal2).title("End Point").draggable(true));
-        nMap.moveCamera(CameraUpdateFactory.newLatLng(montreal2));
-        nMap.getMaxZoomLevel();
+        //LatLng montreal2 = new LatLng(45.4500,-73.5850);
+//        nMap.addMarker(new MarkerOptions().position(montreal2).title("End Point").draggable(true));
+//        nMap.moveCamera(CameraUpdateFactory.newLatLng(montreal2));
+
+//        location.setLatitude(45.5017);
+//        location.setLongitude(-73.5673);
+//
+//        float distanceInMeters =  location.distanceTo(location);
 
 
-        Polyline line = mMap.addPolyline(new PolylineOptions()
-                .add(montreal, montreal2)
-                .width(5).color(Color.RED));
-       line.isVisible();
+//        Polyline line = mMap.addPolyline(new PolylineOptions()
+//                .add(montreal, montreal2)
+//                .width(5).color(Color.RED));
+//       line.isVisible();
     }
 
 
-//    FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.fab);
+
 
 
         public void setdirections(View v) {
             Toast.makeText(getApplicationContext(), "Get Directions", Toast.LENGTH_LONG).show();
         }
+
+
+
+
+private GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
+
+    @Override
+    public void onMyLocationChange(Location location) {
+        LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
+        Marker mMarker = mMap.addMarker(new MarkerOptions().position(loc));
+        if(mMap != null){
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f));
+        }
     }
-
-
-
+};
+}
