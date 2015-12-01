@@ -1,10 +1,8 @@
 package com.example.team_foxhound.minicapstone_project.Activities;
 
-import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.team_foxhound.minicapstone_project.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -12,14 +10,14 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private GoogleMap nMap;
-
+    final LatLng montreal = new LatLng(45.5017, -73.5673);
+    final LatLng montreal2 = new LatLng(45.4500, -73.5850);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,50 +45,65 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         nMap = googleMap;
 
-        // Add a marker in Montreal and move the camera
+        //FIRST MARKER
 
-        LatLng montreal = new LatLng(45.5017, -73.5673);
-//        mMap.addMarker(new MarkerOptions().position(montreal).title("Starting Point").draggable(true));
+        mMap.addMarker(new MarkerOptions().position(montreal).title("Starting Point").draggable(true));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(montreal));
         mMap.setMyLocationEnabled(true);
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(45.5017,-73.5673), 12.0f));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(45.5017, -73.5673), 15.0f));
 
-        //LatLng montreal2 = new LatLng(45.4500,-73.5850);
+        //SECOND MARKER
+
 //        nMap.addMarker(new MarkerOptions().position(montreal2).title("End Point").draggable(true));
 //        nMap.moveCamera(CameraUpdateFactory.newLatLng(montreal2));
+    }
 
-//        location.setLatitude(45.5017);
-//        location.setLongitude(-73.5673);
-//
-//        float distanceInMeters =  location.distanceTo(location);
+        //CALCULATE DISTANCE
+        public float distance(LatLng point1, LatLng point2) {
+            double earthRadius = 3958.75;
+            double latDiff = Math.toRadians(point2.latitude - point1.latitude);
+            double lngDiff = Math.toRadians(point2.longitude - point2.longitude);
+            double a = Math.sin(latDiff / 2) * Math.sin(latDiff / 2) +
+                    Math.cos(Math.toRadians(point1.latitude)) * Math.cos(Math.toRadians(point2.latitude)) *
+                            Math.sin(lngDiff / 2) * Math.sin(lngDiff / 2);
+            double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            double distance = earthRadius * c;
 
+            int meterConversion = 1609;
 
-//        Polyline line = mMap.addPolyline(new PolylineOptions()
-//                .add(montreal, montreal2)
-//                .width(5).color(Color.RED));
-//       line.isVisible();
+        return new Float(distance).floatValue();
     }
 
 
+        //        Location location= new Location("");
+        //        location.setLatitude(45.5017);
+        //        location.setLongitude(-73.5673);
+        //        float distanceInMeters =  location.distanceTo(location);
 
+        //  ADD POLYLINE
+        //    Polyline line = mMap.addPolyline(new PolylineOptions()
+        //            .add(montreal, montreal2)
+        //            .width(5).color(Color.RED));
+        //    line.isVisible();
 
-
+        //ON BUTTON CLICK
         public void setdirections(View v) {
-            Toast.makeText(getApplicationContext(), "Get Directions", Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(), distance(montreal,montreal2), Toast.LENGTH_LONG).show();
+
         }
 
 
 
 
-private GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
-
-    @Override
-    public void onMyLocationChange(Location location) {
-        LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-        Marker mMarker = mMap.addMarker(new MarkerOptions().position(loc));
-        if(mMap != null){
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f));
-        }
-    }
-};
+//private GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
+//
+//    @Override
+//    public void onMyLocationChange(Location location) {
+//        LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
+//        Marker mMarker = mMap.addMarker(new MarkerOptions().position(loc));
+//        if(mMap != null){
+//            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f));
+//        }
+//    }
+//};
 }
