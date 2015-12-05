@@ -53,9 +53,9 @@ public class MainActivityHeartBeat extends AppCompatActivity {
     String username1;
     TextView textView;
     static boolean musicplayerstatus = false;
-    MediaPlayer mediaplayerLow;
-    MediaPlayer mediaplayerMedium;
-    MediaPlayer mediaPlayerHigh;
+    MediaPlayer mediaplayerLow =null;
+    MediaPlayer mediaplayerMedium = null;
+    MediaPlayer mediaPlayerHigh = null;
 
 //   MediaPlayer mediaplayerLow = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol2);
 //   MediaPlayer mediaplayerHigh = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol);
@@ -252,10 +252,13 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
                 if (keeptrackmusic == 0) {
 
-                    MediaController mediaController = new MediaController(MainActivityHeartBeat.this);
                     mediaplayerLow = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol);
                     mediaplayerMedium = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol2);
                     mediaPlayerHigh = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol3);
+
+                    mediaPlayerHigh.setLooping(true);
+                    mediaplayerLow.setLooping(true);
+                    mediaplayerMedium.setLooping(true);
 
                     keeptrackmusic++;
                 }
@@ -264,75 +267,75 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                 if (musicplayerstatus) {
 
 
-                    if (progress > 0 && progress <= 60) {
+                    if (progress >= 0 && progress <= 60) {
 
 
-                        if (mediaplayerMedium.isPlaying()) {
+                        while(mediaplayerMedium.isPlaying()) {
 
                             mediaplayerMedium.pause();
                         }
 
-                        if (mediaPlayerHigh.isPlaying()) {
 
-                            mediaPlayerHigh.pause();
+                        while(!mediaplayerLow.isPlaying()) {
+
+                            mediaplayerLow.start();
+
                         }
-
-                        mediaplayerLow.start();
-
-
                     }
+
 
                     if (progress > 60 && progress <= 120) {
 
 
-                        if (mediaplayerLow.isPlaying()) {
+                        while (mediaplayerLow.isPlaying()) {
 
                             mediaplayerLow.pause();
                         }
 
-                        if (mediaPlayerHigh.isPlaying()) {
+                        while(mediaPlayerHigh.isPlaying()) {
 
                             mediaPlayerHigh.pause();
                         }
 
-                        mediaplayerMedium.start();
+                        while(!mediaplayerMedium.isPlaying()) {
 
+                            mediaplayerMedium.start();
+
+                        }
                     }
 
 
                     if (progress > 120 && progress <= HBMAX2) {
 
 
-                        if (mediaplayerLow.isPlaying()) {
-
-                            mediaplayerLow.pause();
-                        }
-
-                        if (mediaplayerMedium.isPlaying()) {
+                        while (mediaplayerMedium.isPlaying()) {
 
                             mediaplayerMedium.pause();
                         }
 
+                        while(!mediaPlayerHigh.isPlaying()) {
 
-                        mediaPlayerHigh.start();
+                            mediaPlayerHigh.start();
 
+                        }
                     }
                 }
 
                 if (!musicplayerstatus) {
 
 
-                    if (mediaplayerLow.isPlaying()) {
+                    while(mediaplayerLow.isPlaying()) {
 
                         mediaplayerLow.pause();
+
                     }
 
-                    if (mediaplayerMedium.isPlaying()) {
+                    while (mediaplayerMedium.isPlaying()) {
 
                         mediaplayerMedium.pause();
                     }
 
-                    if (mediaPlayerHigh.isPlaying()) {
+                    while(mediaPlayerHigh.isPlaying()) {
 
                         mediaPlayerHigh.pause();
                     }
@@ -616,7 +619,11 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
         finish();
 
-
+        mediaplayerLow.stop();
+        mediaPlayerHigh.stop();
+        mediaplayerMedium.stop();
+        keeptrackmusic=0;
+        musicplayerstatus =false;
 
     }
 
