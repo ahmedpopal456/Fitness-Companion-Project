@@ -236,38 +236,11 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                HBMAX1 = progress;
-                textView.setText(Integer.toString(progress));
-
-                if (keeptrackmusic == 0) {
-
-                    mediaplayerLow = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol);
-                    mediaplayerMedium = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol2);
-                    mediaPlayerHigh = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol3);
-
-                    mediaPlayerHigh.setLooping(true);
-                    mediaplayerLow.setLooping(true);
-                    mediaplayerMedium.setLooping(true);
-
-                    keeptrackmusic++;
-                }
-                //======================================================================================================== MUSIC FUNCTIONALITY
 
                 if (musicplayerstatus) {
 
 
-                    if (progress >= 0 && progress <= 60) {
+                    if (seekBar.getProgress()  >= 0 && seekBar.getProgress()  <= 60) {
 
 
                         while(mediaplayerMedium.isPlaying()) {
@@ -284,7 +257,7 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                     }
 
 
-                    if (progress > 60 && progress <= 120) {
+                    if (seekBar.getProgress()  > 60 && seekBar.getProgress() <= 120) {
 
 
                         while (mediaplayerLow.isPlaying()) {
@@ -305,7 +278,7 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                     }
 
 
-                    if (progress > 120 && progress <= HBMAX2) {
+                    if (seekBar.getProgress()  > 120 && seekBar.getProgress()  <= HBMAX2) {
 
 
                         while (mediaplayerMedium.isPlaying()) {
@@ -344,6 +317,114 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
                 //========================================================================================================
 
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                HBMAX1 = progress;
+                textView.setText(Integer.toString(progress));
+
+                if (keeptrackmusic == 0) {
+
+                    mediaplayerLow = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol);
+                    mediaplayerMedium = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol2);
+                    mediaPlayerHigh = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol3);
+
+                    mediaPlayerHigh.setLooping(true);
+                    mediaplayerLow.setLooping(true);
+                    mediaplayerMedium.setLooping(true);
+
+                    keeptrackmusic++;
+                }
+                //======================================================================================================== MUSIC FUNCTIONALITY
+//
+//                if (musicplayerstatus) {
+//
+//
+//                    if (progress >= 0 && progress <= 60) {
+//
+//
+//                        while(mediaplayerMedium.isPlaying()) {
+//
+//                            mediaplayerMedium.pause();
+//                        }
+//
+//
+//                        while(!mediaplayerLow.isPlaying()) {
+//
+//                            mediaplayerLow.start();
+//
+//                        }
+//                    }
+//
+//
+//                    if (progress > 60 && progress <= 120) {
+//
+//
+//                        while (mediaplayerLow.isPlaying()) {
+//
+//                            mediaplayerLow.pause();
+//                        }
+//
+//                        while(mediaPlayerHigh.isPlaying()) {
+//
+//                            mediaPlayerHigh.pause();
+//                        }
+//
+//                        while(!mediaplayerMedium.isPlaying()) {
+//
+//                            mediaplayerMedium.start();
+//
+//                        }
+//                    }
+//
+//
+//                    if (progress > 120 && progress <= HBMAX2) {
+//
+//
+//                        while (mediaplayerMedium.isPlaying()) {
+//
+//                            mediaplayerMedium.pause();
+//                        }
+//
+//                        while(!mediaPlayerHigh.isPlaying()) {
+//
+//                            mediaPlayerHigh.start();
+//
+//                        }
+//                    }
+//                }
+//
+//                if (!musicplayerstatus) {
+//
+//
+//                    while(mediaplayerLow.isPlaying()) {
+//
+//                        mediaplayerLow.pause();
+//
+//                    }
+//
+//                    while (mediaplayerMedium.isPlaying()) {
+//
+//                        mediaplayerMedium.pause();
+//                    }
+//
+//                    while(mediaPlayerHigh.isPlaying()) {
+//
+//                        mediaPlayerHigh.pause();
+//                    }
+//
+//                }
+//
+//                //========================================================================================================
+//
+//            }
             }
         });
 
