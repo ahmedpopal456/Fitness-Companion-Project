@@ -22,6 +22,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.MediaController;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -47,13 +48,14 @@ public class MainActivityHeartBeat extends AppCompatActivity {
     static boolean record = false;
     static int keepingtrack;
     static int keeptrackmusic =0;
-    static int HBMAX1;  // HBMAX
+    static int HBMAX1=0;  // HBMAX
     static int HBMAX2;  // HBMAX
     String username1;
     TextView textView;
     static boolean musicplayerstatus = false;
-    static int once;
-    static int once2;
+    MediaPlayer mediaplayerLow;
+    MediaPlayer mediaplayerMedium;
+    MediaPlayer mediaPlayerHigh;
 
 //   MediaPlayer mediaplayerLow = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol2);
 //   MediaPlayer mediaplayerHigh = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol);
@@ -97,9 +99,13 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 //        tv.setText(ErrorText);
 
         Button btnConnect = (Button) findViewById(R.id.ButtonConnect);
+
         if (btnConnect != null) {
+
             btnConnect.setOnClickListener(new View.OnClickListener() {
+
                 public void onClick(View v) {
+
                     String BhMacID = "00:07:80:9D:8A:E8";
                     //String BhMacID = "00:07:80:88:F6:BF";
                     adapter = BluetoothAdapter.getDefaultAdapter();
@@ -107,10 +113,13 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                     Set<BluetoothDevice> pairedDevices = adapter.getBondedDevices();
 
                     if (pairedDevices.size() > 0) {
+
                         for (BluetoothDevice device : pairedDevices) {
                             if (device.getName().startsWith("HXM")) {
+
                                 BluetoothDevice btDevice = device;
                                 BhMacID = btDevice.getAddress();
+
                                 break;
 
                             }
@@ -152,7 +161,7 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
                     } else {
                         TextView tv = (TextView) findViewById(R.id.textView3);
-                        String ErrorText = "Unable to Connect !";
+                        String ErrorText = "Unable to Connect/Already Connected";
                         tv.setText(ErrorText);
                     }
 
@@ -163,22 +172,28 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
         /*Obtaining the handle to act on the DISCONNECT button*/
         Button btnDisconnect = (Button) findViewById(R.id.ButtonDisconnect);
+
         if (btnDisconnect != null) {
+
             btnDisconnect.setOnClickListener(new View.OnClickListener() {
+
                 @Override
-				/*Functionality to act if the button DISCONNECT is touched*/
+
                 public void onClick(View v) {
-                    // TODO Auto-generated method stub
+
 					/*Reset the global variables*/
 //                    TextView tv = (TextView) findViewById(R.id.labelStatusMsg);
                     String ErrorText = "Disconnected from HxM!";
 //                    tv.setText(ErrorText);
 
-					/*This disconnects listener from acting on received messages*/
-                    _bt.removeConnectedEventListener(_NConnListener);
-					/*Close the communication with the device & throw an exception if failure*/
-                    _bt.Close();
+                    if (_bt.IsConnected()) { // If the device is connected
 
+					/*This disconnects listener from acting on received messages*/
+                        _bt.removeConnectedEventListener(_NConnListener);
+					/*Close the communication with the device & throw an exception if failure*/
+                        _bt.Close();
+
+                    }
                 }
             });
         }
@@ -189,7 +204,7 @@ public class MainActivityHeartBeat extends AppCompatActivity {
         SQLiteDatabase db = handler.getReadableDatabase();
 
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + "fitness ", null);
+        final Cursor cursor = db.rawQuery("SELECT * FROM " + "fitness ", null);
         startManagingCursor(cursor);
 
 
@@ -224,7 +239,7 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
+
             }
 
             @Override
@@ -232,7 +247,97 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
                 HBMAX1 = progress;
                 textView.setText(Integer.toString(progress));
-//                Toast.makeText(getApplicationContext(), String.valueOf(progress), Toast.LENGTH_LONG).show();
+
+                if (keeptrackmusic == 0) {
+
+                    MediaController mediaController = new MediaController(MainActivityHeartBeat.this);
+                    mediaplayerLow = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol);
+                    mediaplayerMedium = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol2);
+                    mediaPlayerHigh = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol3);
+
+                    keeptrackmusic++;
+                }
+                //======================================================================================================== MUSIC FUNCTIONALITY
+
+                if (musicplayerstatus) {
+
+
+                    if (progress > 0 && progress <= 60) {
+
+
+                        if (mediaplayerMedium.isPlaying()) {
+
+                            mediaplayerMedium.pause();
+                        }
+
+                        if (mediaPlayerHigh.isPlaying()) {
+
+                            mediaPlayerHigh.pause();
+                        }
+
+                        mediaplayerLow.start();
+
+
+                    }
+
+                    if (progress > 60 && progress <= 120) {
+
+
+                        if (mediaplayerLow.isPlaying()) {
+
+                            mediaplayerLow.pause();
+                        }
+
+                        if (mediaPlayerHigh.isPlaying()) {
+
+                            mediaPlayerHigh.pause();
+                        }
+
+                        mediaplayerMedium.start();
+
+                    }
+
+
+                    if (progress > 120 && progress <= HBMAX2) {
+
+
+                        if (mediaplayerLow.isPlaying()) {
+
+                            mediaplayerLow.pause();
+                        }
+
+                        if (mediaplayerMedium.isPlaying()) {
+
+                            mediaplayerMedium.pause();
+                        }
+
+
+                        mediaPlayerHigh.start();
+
+                    }
+                }
+
+                if (!musicplayerstatus) {
+
+
+                    if (mediaplayerLow.isPlaying()) {
+
+                        mediaplayerLow.pause();
+                    }
+
+                    if (mediaplayerMedium.isPlaying()) {
+
+                        mediaplayerMedium.pause();
+                    }
+
+                    if (mediaPlayerHigh.isPlaying()) {
+
+                        mediaPlayerHigh.pause();
+                    }
+
+                }
+
+                //========================================================================================================
 
             }
         });
@@ -292,12 +397,41 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                                 // do something when the button is clicked
                                 public void onClick(DialogInterface arg0, int arg1) {
 
-                                    Intent intent  = new Intent(MainActivityHeartBeat.this, Graph.class);
-                                    intent.putExtra("targethb", HBMAX1);
-                                    intent.putExtra("username1",username);
-                                    startActivity(intent);
-                                    finish();
+                                    SQLiteDatabase sqLiteDatabase = mainHandler1.getReadableDatabase();
+                                    Cursor cursor1 = sqLiteDatabase.rawQuery("SELECT * FROM " + "heartbeat", null);
 
+                                    if(cursor1.moveToFirst()) {
+
+                                        Intent intent = new Intent(MainActivityHeartBeat.this, Graph.class);
+                                        intent.putExtra("targethb", HBMAX1);
+                                        intent.putExtra("username1", username);
+                                        startActivity(intent);
+                                        //==================================================================================== Making sure Music Stops Playing
+
+                                        if (mediaplayerLow.isPlaying()) {
+
+                                            mediaplayerLow.stop();
+                                        }
+
+                                        if (mediaplayerMedium.isPlaying()) {
+
+                                            mediaplayerMedium.stop();
+                                        }
+
+                                        if (mediaPlayerHigh.isPlaying()) {
+
+                                            mediaPlayerHigh.stop();
+                                        }
+
+//======================================================================================================================
+                                        finish();
+                                    }
+
+                                    else{
+
+                                        Toast.makeText(getApplicationContext(), "No Recording has been Stored", Toast.LENGTH_LONG).show();
+
+                                    }
 
                                 }
                             })
@@ -384,10 +518,8 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                     String HeartRatetext = msg.getData().getString("HeartRate");
                     tv = (TextView)findViewById(R.id.labelHeartRate);
 
-                    MediaPlayer mediaplayerLow = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol2);
-                    MediaPlayer mediaplayerHigh = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol);
-
 //======================================================================================================== MAIN FUNCTIONALITY
+
                     // VIBRATE WHEN HB SURPASSES TARGET HB (ONLY ONCE)
                     if((absolute(Integer.valueOf(tv.getText().toString()).intValue()) > HBMAX1) && (keepingtrack==0)){
 
@@ -401,32 +533,6 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                         vibrate_main();
                         keepingtrack =0;
                     }
-
-//======================================================================================================== MUSIC FUNCTIONALITY
-
-
-                    if ((absolute(Integer.valueOf(tv.getText().toString()).intValue()) < HBMAX1) && (musicplayerstatus == true) && keeptrackmusic == 0) {
-
-
-                        mediaplayerLow.start();
-                        keeptrackmusic++;
-
-                    }
-
-                    else if ((absolute(Integer.valueOf(tv.getText().toString()).intValue()) > HBMAX1) && (musicplayerstatus == true) && keeptrackmusic == 1) {
-
-                        mediaplayerHigh.start();
-                        keeptrackmusic--;
-
-                    }
-
-
-//           if (musicplayerstatus == false) {
-//
-//          mediaplayerLow.pause();
-//          mediaplayerHigh.pause();
-//
-//           }
 
 //========================================================================================================  HB DATABASE STORING + GRAPH (SECONDARY FUNCTIONALITY)
 
@@ -458,10 +564,6 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                 case INSTANT_SPEED:
 
                     String InstantSpeedtext = msg.getData().getString("InstantSpeed");
-//                    tv = (EditText)findViewById(R.id.labelInstantSpeed);
-//                    if (tv != null)tv.setText(InstantSpeedtext);
-//
-//                    break;
 
             }
         }

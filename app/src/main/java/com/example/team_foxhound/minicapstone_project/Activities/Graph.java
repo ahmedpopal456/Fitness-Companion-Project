@@ -53,10 +53,9 @@ public class Graph extends AppCompatActivity  {
     int i =0;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -65,7 +64,6 @@ public class Graph extends AppCompatActivity  {
         Bundle extras = getIntent().getExtras();
         int targethb = extras.getInt("targethb");
         final String username = extras.getString("username1");
-
 
 
 
@@ -135,10 +133,10 @@ public class Graph extends AppCompatActivity  {
 // STOP TESTING
 
 
-        SQLiteDatabase database = mainhandler.getReadableDatabase();
+        final SQLiteDatabase database = mainhandler.getReadableDatabase();
 
         // Set cursor to read from DB
-        Cursor cursor = database.rawQuery("SELECT * FROM " + "heartbeat ", null);
+        final Cursor cursor = database.rawQuery("SELECT * FROM " + "heartbeat ", null);
         startManagingCursor(cursor);
 
       double counter =0.0;     // counter for time
@@ -149,45 +147,49 @@ public class Graph extends AppCompatActivity  {
         TextView textView = (TextView) findViewById(R.id.textView22);
         TextView textView2 = (TextView) findViewById(R.id.textView23);
 
-        while (cursor.moveToNext()&&database.getMaximumSize()!=0) {
+
+    while (cursor.moveToNext()) {
 //
-            double number = cursor.getDouble(0);
-            averageHB = averageHB + number;
+        double number = cursor.getDouble(0);
+        averageHB = averageHB + number;
 //
-            series.appendData(new DataPoint(counter, number), true, 10000);
-            series2.appendData(new DataPoint(counter, targethb),true,10000);
-            series3.appendData(new DataPoint(counter, targethb*1.20),true,10000);
-            series4.appendData(new DataPoint(counter, targethb*0.8),true,10000);
+        series.appendData(new DataPoint(counter, number), true, 10000);
+        series2.appendData(new DataPoint(counter, targethb), true, 10000);
+        series3.appendData(new DataPoint(counter, targethb * 1.20), true, 10000);
+        series4.appendData(new DataPoint(counter, targethb * 0.8), true, 10000);
 //
-            counter = counter + 0.5;
-            counter1++;
+        counter = counter + 0.5;
+        counter1++;
 
 
-            if((number>(targethb*0.8)) && (number < (targethb*1.2))){
+        if ((number > (targethb * 0.8)) && (number < (targethb * 1.2))) {
 
-                counter2 = counter2 +0.5;
-            }
+            counter2 = counter2 + 0.5;
         }
-
-        //series.appendData(new DataPoint(1,1),true, 10000);
-        graph.addSeries(series);
-        graph.addSeries(series2);
-        graph.addSeries(series3);
-        graph.addSeries(series4);
-
-        final String username_copy = username;
-        final double counter_copy = counter;
-        final double counter2_copy = counter2;
-        final int counter1_copy = counter1;
-        final double averageHB_copy = averageHB;
+}
 
 
-        textView.setText((Double.toString(averageHB/counter1)).substring(0,6));
+            //series.appendData(new DataPoint(1,1),true, 10000);
+            graph.addSeries(series);
+            graph.addSeries(series2);
+            graph.addSeries(series3);
+            graph.addSeries(series4);
 
-        if((Double.toString(counter2/counter)).length() >6){
-        textView2.setText((Double.toString(counter2/counter)).substring(0,6)+" %");}
 
-        else{textView2.setText((Double.toString(counter2/counter))+" %");}
+            final String username_copy = username;
+            final double counter_copy = counter;
+            final double counter2_copy = counter2;
+            final int counter1_copy = counter1;
+            final double averageHB_copy = averageHB;
+
+
+            textView.setText((Double.toString(averageHB / counter1)).substring(0, 6));
+
+            if ((Double.toString(counter2 / counter)).length() > 6) {
+                textView2.setText((Double.toString(counter2 / counter)).substring(0, 6) + " %");
+            } else {
+                textView2.setText((Double.toString(counter2 / counter)) + " %");
+            }
 
 
 
@@ -252,13 +254,13 @@ public class Graph extends AppCompatActivity  {
                 Calendar cal = Calendar.getInstance();
 
 
-                HBInfoHandler mainhandler_main = new HBInfoHandler(Graph.this);
-                SQLiteDatabase database_new = mainhandler_main.getWritableDatabase();
-                mainhandler_main.putHb((averageHB_copy / counter1_copy), (counter2_copy / counter_copy), username_copy, dateFormat2.format(cal.getTime()), database_new);
 
-                Toast.makeText(getApplicationContext(), "Details and Chart of this session have been saved", Toast.LENGTH_LONG).show();
+                    HBInfoHandler mainhandler_main = new HBInfoHandler(Graph.this);
+                    SQLiteDatabase database_new = mainhandler_main.getWritableDatabase();
+                    mainhandler_main.putHb((averageHB_copy / counter1_copy), (counter2_copy / counter_copy), username_copy, dateFormat2.format(cal.getTime()), database_new);
 
-
+                    Toast.makeText(getApplicationContext(), "Details of this session have been saved", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Screenshot of the Chart has been exported to the External Storage", Toast.LENGTH_LONG).show();
 
             }
 
