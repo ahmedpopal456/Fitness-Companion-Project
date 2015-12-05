@@ -46,13 +46,17 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
     static boolean record = false;
     static int keepingtrack;
+    static int keeptrackmusic =0;
     static int HBMAX1;  // HBMAX
     static int HBMAX2;  // HBMAX
     String username1;
     TextView textView;
-    static int musicplayerstatus;
+    static boolean musicplayerstatus = false;
+    static int once;
+    static int once2;
 
-
+//   MediaPlayer mediaplayerLow = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol2);
+//   MediaPlayer mediaplayerHigh = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol);
 
 
     /** Called when the activity is first created. */
@@ -156,6 +160,7 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                 }
             });
         }
+
         /*Obtaining the handle to act on the DISCONNECT button*/
         Button btnDisconnect = (Button) findViewById(R.id.ButtonDisconnect);
         if (btnDisconnect != null) {
@@ -194,7 +199,7 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
             if (cursor.getString(0).equals(username1)) {
 
-               // HBMAX = cursor.getString(4);
+                // HBMAX = cursor.getString(4);
                 HBMAX1 = (int) (cursor.getDouble(4)*0.6);
                 HBMAX2 = (int) (cursor.getDouble(4));
 
@@ -238,207 +243,230 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
         final Switch mySwitch = (Switch) findViewById(R.id.switch1);
         mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (mySwitch.isChecked()==true) {
-                        musicplayerstatus=0;
-                    } else if(mySwitch.isChecked()==false){
-                        musicplayerstatus=1;
-                    }
+
+                if (mySwitch.isChecked()) {
+
+                    musicplayerstatus=true;
+
                 }
+
+                else if(!(mySwitch.isChecked())){
+
+                    musicplayerstatus=false;
+
+                }
+            }
         });
 
         //#############################################################################################
 
 //    }
 
-    ToggleButton toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
+        ToggleButton toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
 
-    toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+
+                if(buttonView.isChecked() == true){
+
+                    Toast.makeText(getApplicationContext(), "Start Recording", Toast.LENGTH_LONG).show();
+                    record = true;
+
+                }
+
+                else if(buttonView.isChecked() == false) {
+
+                    Toast.makeText(getApplicationContext(), "Recording Stopped", Toast.LENGTH_LONG).show();
+                    record = false;
+
+
+                    AlertDialog alertbox = new AlertDialog.Builder(MainActivityHeartBeat.this)
+
+                            .setMessage("Do you want to view progress of this session?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                                // do something when the button is clicked
+                                public void onClick(DialogInterface arg0, int arg1) {
+
+                                    Intent intent  = new Intent(MainActivityHeartBeat.this, Graph.class);
+                                    intent.putExtra("targethb", HBMAX1);
+                                    intent.putExtra("username1",username);
+                                    startActivity(intent);
+                                    finish();
+
+
+                                }
+                            })
+
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                                public void onClick(DialogInterface arg0, int arg1) {
+
+                                    HbHandler mainhandler = new HbHandler(MainActivityHeartBeat.this);
+                                    SQLiteDatabase database = mainhandler.getReadableDatabase();
+                                    mainhandler.deletetable(database);
+
+
+                                }
+
+                            })
+                            .show();
+
+                }
+
+
+            }
+
+        });
+    }
+
+
+
+
+    private class BTBondReceiver extends BroadcastReceiver {
         @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-
-            if(buttonView.isChecked() == true){
-
-                Toast.makeText(getApplicationContext(), "Start Recording", Toast.LENGTH_LONG).show();
-                record = true;
-
-            }
-
-            else if(buttonView.isChecked() == false) {
-
-                Toast.makeText(getApplicationContext(), "Recording Stopped", Toast.LENGTH_LONG).show();
-                record = false;
-
-
-                AlertDialog alertbox = new AlertDialog.Builder(MainActivityHeartBeat.this)
-
-                        .setMessage("Do you want to view progress of this session?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-
-                            // do something when the button is clicked
-                            public void onClick(DialogInterface arg0, int arg1) {
-
-                                Intent intent  = new Intent(MainActivityHeartBeat.this, Graph.class);
-                                intent.putExtra("targethb", HBMAX1);
-                                intent.putExtra("username1",username);
-                                startActivity(intent);
-                                finish();
-
-
-                            }
-                        })
-
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-
-                            public void onClick(DialogInterface arg0, int arg1) {
-
-                                HbHandler mainhandler = new HbHandler(MainActivityHeartBeat.this);
-                                SQLiteDatabase database = mainhandler.getReadableDatabase();
-                                mainhandler.deletetable(database);
-
-
-                            }
-
-                        })
-                        .show();
-
-            }
-
-
-        }
-
-    });
-}
-
-
-
-
-private class BTBondReceiver extends BroadcastReceiver {
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        Bundle b = intent.getExtras();
-        BluetoothDevice device = adapter.getRemoteDevice(b.get("android.bluetooth.device.extra.DEVICE").toString());
-        Log.d("Bond state", "BOND_STATED = " + device.getBondState());
-    }
-}
-private class BTBroadcastReceiver extends BroadcastReceiver {
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        Log.d("BTIntent", intent.getAction());
-        Bundle b = intent.getExtras();
-        Log.d("BTIntent", b.get("android.bluetooth.device.extra.DEVICE").toString());
-        Log.d("BTIntent", b.get("android.bluetooth.device.extra.PAIRING_VARIANT").toString());
-        try {
+        public void onReceive(Context context, Intent intent) {
+            Bundle b = intent.getExtras();
             BluetoothDevice device = adapter.getRemoteDevice(b.get("android.bluetooth.device.extra.DEVICE").toString());
-            Method m = BluetoothDevice.class.getMethod("convertPinToBytes", new Class[] {String.class} );
-            byte[] pin = (byte[])m.invoke(device, "1234");
-            m = device.getClass().getMethod("setPin", new Class[] {pin.getClass()});
-            Object result = m.invoke(device, pin);
-            Log.d("BTTest", result.toString());
-        } catch (SecurityException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        } catch (NoSuchMethodException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        } catch (IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            Log.d("Bond state", "BOND_STATED = " + device.getBondState());
         }
     }
-}
+    private class BTBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d("BTIntent", intent.getAction());
+            Bundle b = intent.getExtras();
+            Log.d("BTIntent", b.get("android.bluetooth.device.extra.DEVICE").toString());
+            Log.d("BTIntent", b.get("android.bluetooth.device.extra.PAIRING_VARIANT").toString());
+            try {
+                BluetoothDevice device = adapter.getRemoteDevice(b.get("android.bluetooth.device.extra.DEVICE").toString());
+                Method m = BluetoothDevice.class.getMethod("convertPinToBytes", new Class[] {String.class} );
+                byte[] pin = (byte[])m.invoke(device, "1234");
+                m = device.getClass().getMethod("setPin", new Class[] {pin.getClass()});
+                Object result = m.invoke(device, pin);
+                Log.d("BTTest", result.toString());
+            } catch (SecurityException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            } catch (NoSuchMethodException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            } catch (IllegalArgumentException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
 
 
-final Handler Newhandler = new Handler(){
-    public void handleMessage(Message msg)
-    {
+    final Handler Newhandler = new Handler(){
 
-        TextView tv;
-        switch (msg.what)
+
+        public void handleMessage(Message msg)
+
         {
-            case HEART_RATE:
 
-                String HeartRatetext = msg.getData().getString("HeartRate");
-                tv = (TextView)findViewById(R.id.labelHeartRate);
-                final MediaPlayer mediaplayerHigh = MediaPlayer.create(MainActivityHeartBeat.this,R.raw.lol);
-                final MediaPlayer mediaplayerLow = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol2);
+            TextView tv;
+            switch (msg.what)
+            {
+                case HEART_RATE:
+
+                    String HeartRatetext = msg.getData().getString("HeartRate");
+                    tv = (TextView)findViewById(R.id.labelHeartRate);
+
+                    MediaPlayer mediaplayerLow = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol2);
+                    MediaPlayer mediaplayerHigh = MediaPlayer.create(MainActivityHeartBeat.this, R.raw.lol);
 
 //======================================================================================================== MAIN FUNCTIONALITY
-                // VIBRATE WHEN HB SURPASSES TARGET HB (ONLY ONCE)
-                if((absolute(Integer.valueOf(tv.getText().toString()).intValue()) > HBMAX1) && (keepingtrack==0)&&(musicplayerstatus==0)){
-                    mediaplayerLow.stop();
-                    mediaplayerHigh.start();
-                    vibrate_main();
-                    keepingtrack++;
-                }
+                    // VIBRATE WHEN HB SURPASSES TARGET HB (ONLY ONCE)
+                    if((absolute(Integer.valueOf(tv.getText().toString()).intValue()) > HBMAX1) && (keepingtrack==0)){
 
-                // VIBRATE WHEN HB GOES BELOW TARGET HB (ONLY ONCE)
-                else if((absolute(Integer.valueOf(tv.getText().toString()).intValue()) < HBMAX1) && (keepingtrack ==1)&&(musicplayerstatus==0)) {
-                    mediaplayerHigh.stop();
-                    mediaplayerLow.start();
-                    vibrate_main();
-                    keepingtrack =0;
-
-                }
-                else if (musicplayerstatus==1) {
-
-                         mediaplayerLow.stop();mediaplayerHigh.stop();
+                        vibrate_main();
+                        keepingtrack++;
                     }
+
+                    // VIBRATE WHEN HB GOES BELOW TARGET HB (ONLY ONCE)
+                    else if((absolute(Integer.valueOf(tv.getText().toString()).intValue()) < HBMAX1) && (keepingtrack ==1)) {
+
+                        vibrate_main();
+                        keepingtrack =0;
+                    }
+
+//======================================================================================================== MUSIC FUNCTIONALITY
+
+
+                    if ((absolute(Integer.valueOf(tv.getText().toString()).intValue()) < HBMAX1) && (musicplayerstatus == true) && keeptrackmusic == 0) {
+
+
+                        mediaplayerLow.start();
+                        keeptrackmusic++;
+
+                    }
+
+                    else if ((absolute(Integer.valueOf(tv.getText().toString()).intValue()) > HBMAX1) && (musicplayerstatus == true) && keeptrackmusic == 1) {
+
+                        mediaplayerHigh.start();
+                        keeptrackmusic--;
+
+                    }
+
+
+//           if (musicplayerstatus == false) {
+//
+//          mediaplayerLow.pause();
+//          mediaplayerHigh.pause();
+//
+//           }
+
 //========================================================================================================  HB DATABASE STORING + GRAPH (SECONDARY FUNCTIONALITY)
 
-                SQLiteDatabase database = mainHandler1.getWritableDatabase();
+                    SQLiteDatabase database = mainHandler1.getWritableDatabase();
 
-                if(record = true) {
+                    if(record = true) {
 
-                    mainHandler1.putHb(absolute(Integer.valueOf(tv.getText().toString()).intValue()), database);
+                        mainHandler1.putHb(absolute(Integer.valueOf(tv.getText().toString()).intValue()), database);
 
-                }
-
-
-//                        try {
-//                            Thread.sleep(500);                 // Wait for 500ms
-//                        } catch (InterruptedException ex) {
-//                            Thread.currentThread().interrupt();
-//                        }
-//                    }
+                    }
 
 
+                    else {
 
-                else {
+                        // do nothing for now
 
-                    // do nothing for now
-
-                }
+                    }
 
 
 //========================================================================================================
 
-                System.out.println("Heart Rate Info is " + HeartRatetext);
+                    System.out.println("Heart Rate Info is " + HeartRatetext);
 
-                if(Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())).length()==3){tv.setText(Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())));}
-                if(Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())).length()==2) {tv.setText("0"+ Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())));}
-                if(Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())).length()==1) {tv.setText("00"+ Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())));}
-                break;
+                    if(Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())).length()==3){tv.setText(Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())));}
+                    if(Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())).length()==2) {tv.setText("0"+ Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())));}
+                    if(Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())).length()==1) {tv.setText("00"+ Integer.toString(absolute(Integer.valueOf(HeartRatetext).intValue())));}
+                    break;
 
-            case INSTANT_SPEED:
+                case INSTANT_SPEED:
 
-                String InstantSpeedtext = msg.getData().getString("InstantSpeed");
+                    String InstantSpeedtext = msg.getData().getString("InstantSpeed");
 //                    tv = (EditText)findViewById(R.id.labelInstantSpeed);
 //                    if (tv != null)tv.setText(InstantSpeedtext);
 //
 //                    break;
 
+            }
         }
-    }
 
-};
+    };
 
 
 
@@ -466,6 +494,27 @@ final Handler Newhandler = new Handler(){
     }
 
 
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exitByBackKey();
+
+            //moveTaskToBack(false);
+
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
+
+    protected void exitByBackKey() {
+
+        finish();
+
+
+
+    }
 
 
 }

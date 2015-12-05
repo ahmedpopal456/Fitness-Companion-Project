@@ -16,16 +16,44 @@
         <!--android:layout_marginTop="20dp"-->
         <!--android:paddingRight="10dp"/>-->
 
-    <android.support.design.widget.FloatingActionButton
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--android:layout_margin="16dp"-->
+        <!--android:clickable="true"-->
+        <!--android:onClick="setdirections"-->
+        <!--app:backgroundTint="@color/Red"/>-->
+
+    <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_margin="16dp"
-        android:clickable="true"
-        android:onClick="setdirections"
-        app:backgroundTint="@color/Red"/>
+        android:text="Record"
+        android:layout_gravity="bottom|right"
+        android:id="@+id/toggleButton"
+        android:textOff="Set Course"
+        android:textOn="Confirm Course"
+        android:checked="false" />
 
+    <Button
+        android:id="@+id/btn_draw"
+        android:layout_gravity="bottom|left"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Draw Route"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+    
+
+    <!--<Button-->
+        <!--android:id="@+id/btn_reset"-->
+        <!--android:layout_gravity="top|left"-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="reset-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true" />-->
 
 </fragment>
 

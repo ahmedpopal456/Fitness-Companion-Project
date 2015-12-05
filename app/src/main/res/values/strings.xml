@@ -33,5 +33,6 @@
     <string name="title_activity_main_hub">MainHub</string>
     <string name="opendrawer">Open</string>
     <string name="closedrawer">Close</string>
+    <string name="title_activity_details_viewer">DetailsViewer</string>
 
 </resources>

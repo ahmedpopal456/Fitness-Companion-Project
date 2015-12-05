@@ -45,10 +45,10 @@ public class MainHub extends AppCompatActivity  {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList = (ListView) findViewById(R.id.drawerlist);
         ArrayList<String> listArray = new ArrayList<String>();
-        listArray.add("Fitness HUB");
-        listArray.add("Monitor NOW");
+        listArray.add("Fitness Home");
+        listArray.add("MonitorNow");
         listArray.add("MyProgress");
-        listArray.add("Maps");
+        listArray.add("PredictNow");
         listArray.add("Profile");
         listArray.add("Settings");
         listArray.add("Log Out");
@@ -90,6 +90,7 @@ public class MainHub extends AppCompatActivity  {
                     case 3:
 
                         Intent newActivity2 = new Intent(MainHub.this, MapsActivity.class);
+                        newActivity2.putExtra("username3",username);
                         startActivity(newActivity2);
                         drawerLayout.closeDrawer(drawerList);
                         break;
