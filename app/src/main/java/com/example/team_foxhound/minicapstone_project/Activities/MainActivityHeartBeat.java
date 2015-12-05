@@ -152,6 +152,7 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                     //tv1 = 	(EditText)findViewById(R.id.labelPeakAcc);
                     //tv1.setText("0.0");
                     if (_bt.IsConnected()) {
+
                         _bt.start();
                         TextView tv = (TextView) findViewById(R.id.textView3);
                         String ErrorText = "Connected to HxM " + DeviceName;
@@ -160,6 +161,7 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                         //Reset all the values to 0s
 
                     } else {
+
                         TextView tv = (TextView) findViewById(R.id.textView3);
                         String ErrorText = "Unable to Connect/Already Connected";
                         tv.setText(ErrorText);

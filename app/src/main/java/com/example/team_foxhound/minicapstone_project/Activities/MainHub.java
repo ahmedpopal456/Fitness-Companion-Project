@@ -103,9 +103,10 @@ public class MainHub extends AppCompatActivity  {
                         break;
 
                     case 4:
-//                            Intent newActivity3 = new Intent(this, karaiskaki.class);
-//                            startActivity(newActivity3);
-//                            break;
+                            Intent newActivity3 = new Intent(MainHub.this, ProfileView.class);
+                             newActivity3.putExtra("username2", username);
+                            startActivity(newActivity3);
+                            break;
                     case 5:
 //                            Intent newActivity4 = new Intent(this, reservetickets.class);
 //                            startActivity(newActivity4);
