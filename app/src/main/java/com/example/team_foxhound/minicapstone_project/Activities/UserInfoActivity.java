@@ -38,11 +38,22 @@ public class UserInfoActivity extends AppCompatActivity {
 
                     public void onClick(View view) {
 
+                        editText = (EditText) findViewById(R.id.editText2);
+                        editText2 = (EditText) findViewById(R.id.editText4);
+                        editText3 = (EditText) findViewById(R.id.editText5);
+
 
                         int counter = 0;
 
+                        if (editText.getText().toString().isEmpty() || editText2.getText().toString().isEmpty() || editText3.getText().toString().isEmpty()) {
+
+                            Toast.makeText(getApplicationContext(), "Please fill in all Required Information", Toast.LENGTH_LONG).show();
+
+                        }
+
+                        else {
+
                         // Age Validation
-                        editText = (EditText) findViewById(R.id.editText2);
                         if ((getAge() < 100) && (getAge() > 10)) {
 
                             //CONTINUE
@@ -53,7 +64,6 @@ public class UserInfoActivity extends AppCompatActivity {
 
 
                         // Height Validation
-                        editText2 = (EditText) findViewById(R.id.editText4);
                         if ((getHeight() > 50) && (getHeight() < 250)) {
 
                             //CONTINUE
@@ -64,7 +74,6 @@ public class UserInfoActivity extends AppCompatActivity {
 
 
                         // Weight Validation
-                        editText3 = (EditText) findViewById(R.id.editText5);
                         if ((getWeight() > 50) && (getWeight() < 400)) {
 
                             //CONTINUE
@@ -76,10 +85,12 @@ public class UserInfoActivity extends AppCompatActivity {
 
                         if (counter == 0) {
 
+
                             Intent intent = new Intent(UserInfoActivity.this, RegistrationConfirmation.class);
                             startActivity(intent);
                             RegisterInfo.getInstance().finish();
                             finish();
+                        }
                         }
                     }
                 });

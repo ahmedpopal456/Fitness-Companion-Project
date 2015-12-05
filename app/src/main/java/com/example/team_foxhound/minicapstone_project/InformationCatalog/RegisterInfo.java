@@ -68,11 +68,11 @@ public class RegisterInfo extends UserInfoActivity {
 
                         // Username Validation
                         editText6=(EditText) findViewById(R.id.editText8);
-                        if(((editText6.getText().toString()!=""))&&((editText6.getText().toString().length()>6) && (editText6.getText().toString().length()<11))){
+                        if(((editText6.getText().toString()!=""))&&((editText6.getText().toString().length()>3) && (editText6.getText().toString().length()<11))){
                             //CONTINUE
                         }
-                        else if((!(editText6.getText().toString().isEmpty()))&&((editText6.getText().toString().length()>=11) ||(editText6.getText().toString().length()<=6)) ){
-                            Toast.makeText(getApplicationContext(), "Username is Invalid. Please enter a 7 - 10 alphanumerical digit.", Toast.LENGTH_LONG).show();
+                        else if((!(editText6.getText().toString().isEmpty()))&&((editText6.getText().toString().length()>=11) ||(editText6.getText().toString().length()<=3)) ){
+                            Toast.makeText(getApplicationContext(), "Username is Invalid. Please enter a 4 - 10 alphanumerical digit.", Toast.LENGTH_LONG).show();
                             counter = counter+1;
                         }
 
@@ -85,23 +85,23 @@ public class RegisterInfo extends UserInfoActivity {
                         editText7=(EditText) findViewById(R.id.editText9); //Password
                         editText8=(EditText) findViewById(R.id.editText10); // Confirm Password
 
-                        if(((editText7.getText().toString()!="")&&((editText7.getText().toString().length()>6) && (editText7.getText().toString().length()<11)))
-                                &&((editText8.getText().toString()!="")&&((editText8.getText().toString().length()>6) && (editText8.getText().toString().length()<11)))
+                        if(((editText7.getText().toString()!="")&&((editText7.getText().toString().length()>4) && (editText7.getText().toString().length()<11)))
+                                &&((editText8.getText().toString()!="")&&((editText8.getText().toString().length()>4) && (editText8.getText().toString().length()<11)))
                                 && (editText7.getText().toString().equals(editText8.getText().toString()))){
 
                             //CONTINUE
                         }
-                        else if(((editText7.getText().toString()!="")&&((editText7.getText().toString().length()>=6) && (editText7.getText().toString().length()<=11)))
-                                &&((editText8.getText().toString() != "")&&((editText8.getText().toString().length()>=6) && (editText8.getText().toString().length()<=11)))
+                        else if(((editText7.getText().toString()!="")&&((editText7.getText().toString().length()>=4) && (editText7.getText().toString().length()<=11)))
+                                &&((editText8.getText().toString() != "")&&((editText8.getText().toString().length()>=4) && (editText8.getText().toString().length()<=11)))
                                 && !(editText7.getText().toString().equals(editText8.getText().toString())) ){
 
                             Toast.makeText(getApplicationContext(), "Entered Passwords are not Equivalent. Please Verify.", Toast.LENGTH_LONG).show();
                             counter = counter+1;
                         }
-                        else if(((editText7.getText().toString().length()<=6) || (editText7.getText().toString().length()>=11))
-                                ||((editText8.getText().toString().length()<=6) || (editText8.getText().toString().length()>=11))){
+                        else if(((editText7.getText().toString().length()<=4) || (editText7.getText().toString().length()>=11))
+                                ||((editText8.getText().toString().length()<=4) || (editText8.getText().toString().length()>=11))){
 
-                            Toast.makeText(getApplicationContext(), "Password is Invalid. Please enter a 7 - 10 alphanumerical digit.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Password is Invalid. Please enter a 5 - 10 alphanumerical digit.", Toast.LENGTH_LONG).show();
                             counter = counter+1;
                         }
 
