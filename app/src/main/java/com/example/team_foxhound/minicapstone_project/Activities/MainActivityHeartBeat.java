@@ -413,20 +413,21 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                                         startActivity(intent);
                                         //==================================================================================== Making sure Music Stops Playing
 
-                                        if (mediaplayerLow.isPlaying()) {
+                                        while (mediaplayerLow != null) {
 
                                             mediaplayerLow.stop();
                                         }
 
-                                        if (mediaplayerMedium.isPlaying()) {
+                                        while (mediaplayerMedium != null) {
 
                                             mediaplayerMedium.stop();
                                         }
 
-                                        if (mediaPlayerHigh.isPlaying()) {
+                                        while (mediaPlayerHigh!=null) {
 
                                             mediaPlayerHigh.stop();
                                         }
+
 
 //======================================================================================================================
                                         finish();
@@ -619,9 +620,25 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
         finish();
 
-        mediaplayerLow.stop();
-        mediaPlayerHigh.stop();
-        mediaplayerMedium.stop();
+
+
+        while (mediaplayerLow != null) {
+
+            mediaplayerLow.stop();
+        }
+
+        while (mediaplayerMedium != null) {
+
+            mediaplayerMedium.stop();
+        }
+
+        while (mediaPlayerHigh!=null) {
+
+            mediaPlayerHigh.stop();
+        }
+
+
+
         keeptrackmusic=0;
         musicplayerstatus =false;
 
