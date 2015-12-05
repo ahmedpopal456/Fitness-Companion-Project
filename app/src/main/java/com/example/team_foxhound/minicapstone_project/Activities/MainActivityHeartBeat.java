@@ -237,16 +237,14 @@ public class MainActivityHeartBeat extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
+                //======================================================================================================== MUSIC FUNCTIONALITY
+
                 if (musicplayerstatus) {
 
 
                     if (seekBar.getProgress()  >= 0 && seekBar.getProgress()  <= 60) {
 
 
-                        while(mediaplayerMedium.isPlaying()) {
-
-                            mediaplayerMedium.pause();
-                        }
 
 
                         while(!mediaplayerLow.isPlaying()) {
@@ -254,12 +252,22 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                             mediaplayerLow.start();
 
                         }
+
+                        while(mediaplayerMedium.isPlaying()) {
+
+                            mediaplayerMedium.pause();
+                        }
+
                     }
 
 
-                    if (seekBar.getProgress()  > 60 && seekBar.getProgress() <= 120) {
+                    else if (seekBar.getProgress()  > 60 && seekBar.getProgress() <= 120) {
 
+                        while(!mediaplayerMedium.isPlaying()) {
 
+                            mediaplayerMedium.start();
+
+                        }
                         while (mediaplayerLow.isPlaying()) {
 
                             mediaplayerLow.pause();
@@ -270,27 +278,24 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                             mediaPlayerHigh.pause();
                         }
 
-                        while(!mediaplayerMedium.isPlaying()) {
 
-                            mediaplayerMedium.start();
-
-                        }
                     }
 
 
-                    if (seekBar.getProgress()  > 120 && seekBar.getProgress()  <= HBMAX2) {
-
-
-                        while (mediaplayerMedium.isPlaying()) {
-
-                            mediaplayerMedium.pause();
-                        }
+                    else if (seekBar.getProgress()  > 120 && seekBar.getProgress()  <= HBMAX2) {
 
                         while(!mediaPlayerHigh.isPlaying()) {
 
                             mediaPlayerHigh.start();
 
                         }
+
+                        while (mediaplayerMedium.isPlaying()) {
+
+                            mediaplayerMedium.pause();
+                        }
+
+
                     }
                 }
 
@@ -322,6 +327,7 @@ public class MainActivityHeartBeat extends AppCompatActivity {
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
 
+
             }
 
             @Override
@@ -342,89 +348,8 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
                     keeptrackmusic++;
                 }
-                //======================================================================================================== MUSIC FUNCTIONALITY
-//
-//                if (musicplayerstatus) {
-//
-//
-//                    if (progress >= 0 && progress <= 60) {
-//
-//
-//                        while(mediaplayerMedium.isPlaying()) {
-//
-//                            mediaplayerMedium.pause();
-//                        }
-//
-//
-//                        while(!mediaplayerLow.isPlaying()) {
-//
-//                            mediaplayerLow.start();
-//
-//                        }
-//                    }
-//
-//
-//                    if (progress > 60 && progress <= 120) {
-//
-//
-//                        while (mediaplayerLow.isPlaying()) {
-//
-//                            mediaplayerLow.pause();
-//                        }
-//
-//                        while(mediaPlayerHigh.isPlaying()) {
-//
-//                            mediaPlayerHigh.pause();
-//                        }
-//
-//                        while(!mediaplayerMedium.isPlaying()) {
-//
-//                            mediaplayerMedium.start();
-//
-//                        }
-//                    }
-//
-//
-//                    if (progress > 120 && progress <= HBMAX2) {
-//
-//
-//                        while (mediaplayerMedium.isPlaying()) {
-//
-//                            mediaplayerMedium.pause();
-//                        }
-//
-//                        while(!mediaPlayerHigh.isPlaying()) {
-//
-//                            mediaPlayerHigh.start();
-//
-//                        }
-//                    }
-//                }
-//
-//                if (!musicplayerstatus) {
-//
-//
-//                    while(mediaplayerLow.isPlaying()) {
-//
-//                        mediaplayerLow.pause();
-//
-//                    }
-//
-//                    while (mediaplayerMedium.isPlaying()) {
-//
-//                        mediaplayerMedium.pause();
-//                    }
-//
-//                    while(mediaPlayerHigh.isPlaying()) {
-//
-//                        mediaPlayerHigh.pause();
-//                    }
-//
-//                }
-//
-//                //========================================================================================================
-//
-//            }
+
+
             }
         });
 
