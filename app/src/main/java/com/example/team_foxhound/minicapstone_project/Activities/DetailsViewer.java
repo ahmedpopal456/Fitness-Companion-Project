@@ -143,11 +143,11 @@ public class DetailsViewer extends AppCompatActivity {
 
             }
 
-        double time = speed/total; // in hours
+        double time = (1/speed)*total; // in hours
 
 
 
-return  ((BMR/24) * 1.1 * time);
+return  (BMR * 1.375 * time);  // for a moderately fit person
 
 
     }

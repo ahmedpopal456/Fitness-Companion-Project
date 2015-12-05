@@ -58,7 +58,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     int counter = 0;
     int counter2 =0;
     boolean hasstarted =false;
-
+    boolean directions=false;
     static Marker marker1;
     static Marker marker2;
 
@@ -135,25 +135,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 public void onClick(DialogInterface arg0, int arg1) {
 
                                     double totaldistancetemp = totaldistance;
-                                    int waypointtemp = waypoint;
+                                    int waypointtemp = waypoint-1;
 
-                                    Intent intent  = new Intent(MapsActivity.this, DetailsViewer.class);
-                                    intent.putExtra("totaldistance", totaldistancetemp);
-                                    intent.putExtra("waypoints", waypointtemp);
-                                    intent.putExtra("username1", username2);
-                                    startActivity(intent);
+                                    if(directions==true) {
+
+                                        Intent intent = new Intent(MapsActivity.this, DetailsViewer.class);
+                                        intent.putExtra("totaldistance", totaldistancetemp);
+                                        intent.putExtra("waypoints", waypointtemp);
+                                        intent.putExtra("username1", username2);
+                                        startActivity(intent);
 
 
-                                    counter--;
-                                    counter2=0;
-                                    waypoint =0;
-                                    checkpoints.clear();
-                                    mMap.clear();
-                                    totaldistance=0;
+                                        counter--;
+                                        counter2 = 0;
+                                        waypoint = 1;
+                                        checkpoints.clear();
+                                        mMap.clear();
+                                        directions = false;
+                                        totaldistance = 0;
+                                    }
 
                                     // cout distance
 
-
+                                    else {
+                                        Toast.makeText(getApplicationContext(), "A Route has not been Established", Toast.LENGTH_LONG).show();
+                                        counter--;
+                                        counter2 = 0;
+                                        waypoint = 1;
+                                        checkpoints.clear();
+                                        mMap.clear();
+                                        directions = false;
+                                        totaldistance = 0;
+                                    }
                                 }
                             })
 
@@ -169,7 +182,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         checkpoints.clear();
                                         totaldistance=0;
                                         waypoint = 1;
-
+                                        directions=false;
                                         counter--;
                                     }
 
@@ -264,7 +277,7 @@ if(!hasstarted) {
                 public void onClick(DialogInterface arg0, int arg1) {
 
                     // do  nothing
-                   hasstarted= true;
+                    hasstarted= true;
                     LatLng latLng = new LatLng(mMap.getCameraPosition().target.latitude,mMap.getCameraPosition().target.longitude);
                     CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 4);
                     mMap.animateCamera(cameraUpdate);
@@ -374,6 +387,7 @@ if(!hasstarted) {
 
    private String getDirectionsUrl(LatLng origin,LatLng dest){
 
+       directions = true;
        // Origin of route
        String str_origin = "origin="+origin.latitude+","+origin.longitude;
 
