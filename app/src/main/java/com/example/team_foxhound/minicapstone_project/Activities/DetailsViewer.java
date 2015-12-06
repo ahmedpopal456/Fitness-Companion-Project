@@ -91,7 +91,7 @@ public class DetailsViewer extends AppCompatActivity {
                     aSwitch.setText("Male");
 
                     TextView textView = (TextView) findViewById(R.id.textView28);
-                    textView.setText("Total Calories : " + Double.toString(CalculateCalories(totaldistance)) + " KCAL");
+                    textView.setText(Double.toString(CalculateCalories(totaldistance))+" KCAL");
 
 
                 }
