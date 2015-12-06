@@ -10,6 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="USER INFORMATION"
+        android:textStyle="bold"
+        android:textColor="#ffae1b"
         android:id="@+id/textView7"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -18,44 +20,16 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Age"
-        android:id="@+id/textView4"
-        android:layout_marginTop="71dp"
-        android:layout_below="@+id/textView8"
-        android:layout_alignRight="@+id/textView5"
-        android:layout_alignEnd="@+id/textView5" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Height (cm)"
-        android:id="@+id/textView5"
-        android:layout_marginTop="78dp"
-        android:layout_below="@+id/textView4"
-        android:layout_alignLeft="@+id/textView7"
-        android:layout_alignStart="@+id/textView7" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Weight (lbs)"
-        android:id="@+id/textView6"
-        android:layout_marginTop="84dp"
-        android:layout_below="@+id/textView5"
-        android:layout_alignLeft="@+id/textView5"
-        android:layout_alignStart="@+id/textView5" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Please set or update the following corresponding personal information:"
         android:id="@+id/textView8"
         android:layout_below="@+id/textView7"
-        android:layout_alignLeft="@+id/textView6"
-        android:layout_alignStart="@+id/textView6"
         android:layout_marginTop="32dp"
         android:gravity="center"
-        android:textStyle="italic"/>
+        android:textColor="#18af0b"
+        android:textSize="17dp"
+        android:textStyle="italic"
+        android:layout_alignLeft="@+id/textView7"
+        android:layout_alignStart="@+id/textView7" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -63,7 +37,11 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/editText2"
-        android:layout_above="@+id/textView5"
+        android:layout_below="@+id/textView8"
+        android:layout_marginTop="45dp"
+        android:hint="Age"
+        android:layout_alignLeft="@+id/textView8"
+        android:layout_alignStart="@+id/textView8"
         android:layout_alignRight="@+id/textView7"
         android:layout_alignEnd="@+id/textView7" />
 
@@ -74,9 +52,12 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/editText4"
-        android:layout_alignBottom="@+id/textView5"
+        android:layout_centerVertical="true"
+        android:hint="Height (cm)"
         android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
+        android:layout_alignStart="@+id/editText2"
+        android:layout_alignRight="@+id/editText2"
+        android:layout_alignEnd="@+id/editText2" />
 
 
     <EditText
@@ -85,10 +66,13 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/editText5"
-        android:layout_alignBottom="@+id/textView6"
+        android:layout_below="@+id/editText4"
+        android:layout_marginTop="51dp"
+        android:hint="Weight (cm)"
         android:layout_alignLeft="@+id/editText4"
-        android:layout_alignStart="@+id/editText4" />
-
+        android:layout_alignStart="@+id/editText4"
+        android:layout_alignRight="@+id/editText4"
+        android:layout_alignEnd="@+id/editText4" />
 
     <Button
         android:layout_width="wrap_content"
@@ -96,7 +80,8 @@
         android:text="Next"
         android:id="@+id/button7"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>

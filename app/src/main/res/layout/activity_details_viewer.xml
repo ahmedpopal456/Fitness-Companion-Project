@@ -11,45 +11,109 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:textSize="15sp"
+        android:textSize="20dp"
         android:id="@+id/textView26"
-        android:layout_marginTop="182dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:textColor="#18af0b"
+        android:layout_alignTop="@+id/textView5"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:textSize="15sp"
+        android:textSize="20dp"
         android:id="@+id/textView27"
-        android:layout_below="@+id/textView26"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="78dp" />
+        android:layout_marginBottom="64dp"
+        android:textColor="#18af0b"
+        android:layout_above="@+id/textView42"
+        android:layout_alignLeft="@+id/textView42"
+        android:layout_alignStart="@+id/textView42" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:textSize="15sp"
+        android:textSize="20dp"
         android:id="@+id/textView28"
-        android:layout_below="@+id/textView27"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="77dp" />
+        android:layout_marginBottom="30dp"
+        android:textColor="#18af0b"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/textView42"
+        android:layout_alignStart="@+id/textView42" />
 
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/switch2"
         android:checked="false"
+        android:text="Male "
+        android:layout_marginTop="54dp"
+        android:layout_below="@+id/textView4"
+        android:layout_alignRight="@+id/textView4"
+        android:layout_alignEnd="@+id/textView4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Here are some details related to your pre-planned journey:"
+        android:id="@+id/textView4"
+        android:textSize="17dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:text="Male" />
+        android:textStyle="italic"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="# Waypoints :"
+        android:id="@+id/textView5"
+        android:textSize="20dp"
+        android:textColor="#ffae1b"
+        android:layout_marginTop="81dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/switch2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Distance :"
+        android:id="@+id/textView6"
+        android:textSize="20dp"
+        android:textColor="#ffae1b"
+        android:layout_above="@+id/textView27"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Calories :"
+        android:id="@+id/textView42"
+        android:textSize="20dp"
+        android:textColor="#ffae1b"
+        android:layout_above="@+id/textView28"
+        android:layout_alignRight="@+id/textView6"
+        android:layout_alignEnd="@+id/textView6"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select your GENDER :"
+        android:id="@+id/textView43"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        android:layout_alignTop="@+id/switch2"
+        android:layout_alignLeft="@+id/textView27"
+        android:layout_alignStart="@+id/textView27"
+        android:layout_marginLeft="43dp"
+        android:layout_marginStart="43dp" />
 
 </RelativeLayout>

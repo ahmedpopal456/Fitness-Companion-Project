@@ -13,6 +13,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="CONFIRMATION"
+        android:textStyle="bold"
+        android:textColor="#ffae1b"
         android:id="@+id/textView11"
         android:textSize="32dp"
         android:layout_alignParentTop="true"
@@ -22,7 +24,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="                                                                 The following is the information you have entered. Please Verify and confirm the following:"
+        android:text="The following is the information you have entered. Please Verify and confirm the following:"
+        android:textSize="17dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#18af0b"
         android:id="@+id/textView12"
         android:textStyle="italic"
         android:gravity="center"
@@ -100,8 +105,8 @@
         android:text="Create User"
         android:id="@+id/button8"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/textView11"
-        android:layout_alignEnd="@+id/textView11" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -109,7 +114,7 @@
         android:text="Modify"
         android:id="@+id/button4"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/textView11"
-        android:layout_alignStart="@+id/textView11" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

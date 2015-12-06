@@ -1,26 +1,19 @@
 package com.example.team_foxhound.minicapstone_project.Activities;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.example.team_foxhound.minicapstone_project.R;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import persistence.MainHandler;
 
@@ -43,6 +36,8 @@ public class DetailsViewer extends AppCompatActivity {
         final int waypoint = extras.getInt("waypoints");
         final double totaldistance = extras.getDouble("totaldistance");
         final String username3 = extras.getString("username1");
+        final ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFAE1B")));
 
         TextView textView = (TextView) findViewById(R.id.textView26);
         TextView textView2 = (TextView) findViewById(R.id.textView27);
@@ -69,9 +64,9 @@ public class DetailsViewer extends AppCompatActivity {
             }
         }
 
-        textView.setText("Number of Waypoints : " + Integer.toString(waypoint));
-        textView2.setText("Total Distance : " + Double.toString(totaldistance) + " KM");
-        textView3.setText("Total Calories : " + Double.toString(CalculateCalories(totaldistance)) + " KCAL");
+        textView.setText(Integer.toString(waypoint));
+        textView2.setText( Double.toString(totaldistance) + " KM");
+        textView3.setText( Double.toString(CalculateCalories(totaldistance)) + " KCAL");
 
 
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -85,7 +80,7 @@ public class DetailsViewer extends AppCompatActivity {
                     aSwitch.setText("Female");
 
                     TextView textView = (TextView) findViewById(R.id.textView28);
-                    textView.setText("Total Calories : " + Double.toString(CalculateCalories(totaldistance)) + " KCAL");
+                    textView.setText(Double.toString(CalculateCalories(totaldistance)) + " KCAL");
 
 
                 }
