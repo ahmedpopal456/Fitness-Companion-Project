@@ -1,5 +1,6 @@
 package com.example.team_foxhound.minicapstone_project.Activities;
 
+import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -31,8 +32,9 @@ public class ProgressView extends AppCompatActivity {
         String username = extras.getString("username2");
 
 
-        TextView textView1 = (TextView) findViewById(R.id.textView25);
-        textView1.setText("PAST WORKOUT STATISTICS for user : " +username);
+        TextView textView1 = (TextView) findViewById(R.id.textView38);
+        textView1.setText(username);
+        textView1.setTextColor(Color.parseColor("#FFAE1B"));
 
         //    ===============================================================================================
 
@@ -49,14 +51,6 @@ public class ProgressView extends AppCompatActivity {
 
         while ((cursor.moveToNext()) && (database.getMaximumSize() > 0)) {
 
-//            TableRow row = (TableRow) tblLayout.getChildAt(0);
-//            TextView textView = (TextView)row.getChildAt(0);
-//            TextView textView2 = (TextView)row.getChildAt(1);
-//            TextView textView3 = (TextView)row.getChildAt(2);
-//
-//            textView.setText(cursor.getString(3));
-//            textView2.setText(cursor.getString(1));
-//            textView3.setText(cursor.getString(2));
 
            if ((username.equals(cursor.getString(0))) && i <= 12) {
 

@@ -9,7 +9,7 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="350dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -384,10 +384,77 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Date"
+        android:gravity="center"
+        android:textColor="#008000"
+        android:id="@+id/textView34"
+        android:layout_marginLeft="56dp"
+        android:layout_marginStart="56dp"
+        android:layout_above="@+id/tablelayout"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=" Avg. HB"
+        android:gravity="center"
+        android:textColor="#008000"
+        android:id="@+id/textView35"
+        android:layout_marginLeft="66dp"
+        android:layout_marginStart="66dp"
+        android:layout_alignTop="@+id/textView34"
+        android:layout_toRightOf="@+id/textView34"
+        android:layout_toEndOf="@+id/textView34"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="       On Target"
+        android:gravity="center"
+        android:textColor="#008000"
+        android:id="@+id/textView36"
+        android:layout_alignTop="@+id/textView35"
+        android:layout_alignRight="@+id/tablelayout"
+        android:layout_alignEnd="@+id/tablelayout"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Past Workout Statistics"
+        android:gravity="center"
+        android:textColor="#008000"
         android:id="@+id/textView25"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textColor="#167e0b"/>
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Username: "
+        android:gravity="center"
+        android:textColor="#008000"
+        android:id="@+id/textView37"
+        android:layout_below="@+id/textView25"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/textView38"
+        android:layout_below="@+id/textView25"
+        android:layout_toRightOf="@+id/textView37"
+        android:layout_toEndOf="@+id/textView37" />
+
 </RelativeLayout>

@@ -14,11 +14,13 @@ import java.util.List;
 import org.json.JSONObject;
 
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -99,28 +101,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 if (buttonView.isChecked()) {
 
+                    counter=0;
+                    counter2 = 0;
+                    waypoint = 1;
+                    checkpoints.clear();
+                    mMap.clear();
+                    directions = false;
+                    totaldistance = 0;
+
                     check = true;
                     Toast.makeText(getApplicationContext(), "Please Set your Destination", Toast.LENGTH_LONG).show();
 
                     if (counter == 0) {
 
-//                       if(marker1.equals(null) && marker2.equals(null)){
-//
-//                           marker1.remove();
-//                           marker2.remove();
-//                       }
+                        if(hasstarted) {
+
+                            startposition = new LatLng(myposition.latitude, myposition.longitude);
+                            endposition = new LatLng(myposition.latitude + 0.002, myposition.longitude);
+
+                            marker1 = mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)).position(startposition).draggable(true).title("Start"));
+                            marker2 = mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)).position(endposition).draggable(true).title("End"));
+
+                            counter++;
+                        }
+                        else{
+
+                            startposition = new LatLng(mMap.getCameraPosition().target.latitude,mMap.getCameraPosition().target.longitude);
+                            endposition = new LatLng(mMap.getCameraPosition().target.latitude + 0.002, mMap.getCameraPosition().target.longitude);
+
+                            marker1 = mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)).position(startposition).draggable(true).title("Start"));
+                            marker2 = mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)).position(endposition).draggable(true).title("End"));
+
+                            counter++;
 
 
-                        startposition = new LatLng(myposition.latitude, myposition.longitude);
-                        endposition = new LatLng(myposition.latitude+0.002, myposition.longitude);
-
-                        marker1 = mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)).position(startposition).draggable(true).title("Start"));
-                        marker2 = mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)).position(endposition).draggable(true).title("End"));
-
-                        counter++;
+                        }
                     }
 
-                } else {
+                }
+
+
+                else {
 
 //                    Toast.makeText(getApplicationContext(), "Recording Stopped", Toast.LENGTH_LONG).show();
 
@@ -146,18 +167,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         startActivity(intent);
 
 
-                                        counter--;
-                                        counter2 = 0;
-                                        waypoint = 1;
-                                        checkpoints.clear();
-                                        mMap.clear();
-                                        directions = false;
-                                        totaldistance = 0;
                                     }
 
                                     // cout distance
 
                                     else {
+
                                         Toast.makeText(getApplicationContext(), "A Route has not been Established", Toast.LENGTH_LONG).show();
                                         counter--;
                                         counter2 = 0;
@@ -277,9 +292,9 @@ if(!hasstarted) {
                 public void onClick(DialogInterface arg0, int arg1) {
 
                     // do  nothing
-                    hasstarted= true;
+                    hasstarted= false;
                     LatLng latLng = new LatLng(mMap.getCameraPosition().target.latitude,mMap.getCameraPosition().target.longitude);
-                    CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 4);
+                    CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 3);
                     mMap.animateCamera(cameraUpdate);
                 }
 

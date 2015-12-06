@@ -42,7 +42,6 @@
                 fab:fab_colorNormal="#ffae1b"
                 fab:fab_colorPressed="#ffffff"
                 fab:fab_size="mini"
-
                 >
 
             </com.getbase.floatingactionbutton.FloatingActionButton>

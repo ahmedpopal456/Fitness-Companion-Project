@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -47,7 +48,7 @@ public class DetailsViewer extends AppCompatActivity {
         TextView textView2 = (TextView) findViewById(R.id.textView27);
         TextView textView3 = (TextView) findViewById(R.id.textView28);
 
-        ToggleButton toggleButton = (ToggleButton) findViewById(R.id.toggleButton2);
+       final Switch aSwitch = (Switch) findViewById(R.id.switch2);
 
 
         MainHandler handler = new MainHandler(this);
@@ -73,7 +74,7 @@ public class DetailsViewer extends AppCompatActivity {
         textView3.setText("Total Calories : " + Double.toString(CalculateCalories(totaldistance)) + " KCAL");
 
 
-        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
@@ -81,6 +82,7 @@ public class DetailsViewer extends AppCompatActivity {
                 if(buttonView.isChecked()) {
 
                     check = true;
+                    aSwitch.setText("Female");
 
                     TextView textView = (TextView) findViewById(R.id.textView28);
                     textView.setText("Total Calories : " + Double.toString(CalculateCalories(totaldistance)) + " KCAL");
@@ -91,6 +93,8 @@ public class DetailsViewer extends AppCompatActivity {
 
 
                     check = false;
+                    aSwitch.setText("Male");
+
                     TextView textView = (TextView) findViewById(R.id.textView28);
                     textView.setText("Total Calories : " + Double.toString(CalculateCalories(totaldistance)) + " KCAL");
 

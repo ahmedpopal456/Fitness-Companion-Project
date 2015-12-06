@@ -42,17 +42,14 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="77dp" />
 
-    <ToggleButton
+    <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Male"
-        android:id="@+id/toggleButton2"
-        android:textOff="Male"
-        android:textOn="Female"
-        android:layout_marginRight="60dp"
-        android:layout_marginEnd="60dp"
+        android:id="@+id/switch2"
         android:checked="false"
+        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:text="Male" />
 
 </RelativeLayout>
