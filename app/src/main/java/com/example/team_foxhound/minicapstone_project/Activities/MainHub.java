@@ -22,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.team_foxhound.minicapstone_project.R;
 
@@ -31,9 +32,7 @@ import persistence.MainHubHandler;
 
 public class MainHub extends AppCompatActivity  {
 
-
-
-    private ActionBarDrawerToggle actionBarDrawerToggle;
+ private ActionBarDrawerToggle actionBarDrawerToggle;
     private DrawerLayout drawerLayout;
     private ListView drawerList;
     private FragmentTransaction fragmentTransaction;
@@ -64,6 +63,7 @@ public class MainHub extends AppCompatActivity  {
                   editText11.setText(cursor.getString(0));
               }
           }
+
 //==========================================================================================
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList = (ListView) findViewById(R.id.drawerlist);
@@ -73,7 +73,6 @@ public class MainHub extends AppCompatActivity  {
         listArray.add("MyProgress");
         listArray.add("PredictNow");
         listArray.add("Profile");
-        listArray.add("Settings");
         listArray.add("Log Out");
 
         drawerList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -131,12 +130,8 @@ public class MainHub extends AppCompatActivity  {
                              newActivity3.putExtra("username2", username);
                             startActivity(newActivity3);
                             break;
-                    case 5:
-//                            Intent newActivity4 = new Intent(this, reservetickets.class);
-//                            startActivity(newActivity4);
-//                            break;
 
-                    case 6:
+                    case 5:
 
                         exit();
                         break;
@@ -244,10 +239,22 @@ public class MainHub extends AppCompatActivity  {
               String string  = editText11.getText().toString();
 
 
-              if(string != null) {
+              if(!string.isEmpty()) {
+
+
                   MainHubHandler mainHubHandler = new MainHubHandler(MainHub.this);
                   SQLiteDatabase sqLiteDatabase = mainHubHandler.getWritableDatabase();
                   mainHubHandler.putString(string, sqLiteDatabase);
+
+                  Toast.makeText(getApplicationContext(), "Note has been saved", Toast.LENGTH_LONG).show();
+              }
+
+              else
+
+              {
+
+                  Toast.makeText(getApplicationContext(), "Please enter Note", Toast.LENGTH_LONG).show();
+
               }
 
 

@@ -79,7 +79,7 @@
             android:layout_marginTop="47dp"
             android:textSize="32dp"
             android:textColor="#ff6d15"
-            android:textStyle="bold"/>
+            android:textStyle="normal|bold"/>
 
         <EditText
             android:layout_width="351dp"
@@ -87,18 +87,18 @@
             android:id="@+id/editText11"
             android:layout_gravity="center"
             android:background="@drawable/stickynote"
-            android:textColor="#000000"
-            android:textStyle="italic"
+            android:textColor="#008000"
             android:textAlignment="gravity"
             android:gravity="top"
-            android:hint="Take Notes Here..."
+            android:hint=" ---- Takes Notes ----"
+            android:textStyle="italic"
+            android:textColorHint="#008000"
             android:paddingTop="55dp"
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
             android:paddingBottom="25dp"
             android:singleLine="false"
             android:layout_marginTop="15dp"
-            android:textColorHint="@color/wallet_hint_foreground_holo_dark"
 
 
 

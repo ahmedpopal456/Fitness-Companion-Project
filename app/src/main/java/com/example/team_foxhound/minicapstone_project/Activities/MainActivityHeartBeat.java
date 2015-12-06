@@ -299,26 +299,6 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                     }
                 }
 
-                if (!musicplayerstatus) {
-
-
-                    while(mediaplayerLow.isPlaying()) {
-
-                        mediaplayerLow.pause();
-
-                    }
-
-                    while (mediaplayerMedium.isPlaying()) {
-
-                        mediaplayerMedium.pause();
-                    }
-
-                    while(mediaPlayerHigh.isPlaying()) {
-
-                        mediaPlayerHigh.pause();
-                    }
-
-                }
 
                 //========================================================================================================
 
@@ -371,6 +351,22 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                 else if(!(mySwitch.isChecked())){
 
                     musicplayerstatus=false;
+
+                    if (mediaplayerLow != null) {
+
+                        mediaplayerLow.stop();
+                    }
+
+                    if (mediaplayerMedium != null) {
+
+                        mediaplayerMedium.stop();
+                    }
+
+                    if(mediaPlayerHigh!=null) {
+
+                        mediaPlayerHigh.stop();
+                    }
+
 
                 }
             }
