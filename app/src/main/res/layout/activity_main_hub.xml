@@ -73,7 +73,7 @@
             android:text="FITNESS COMPANION"
             android:id="@+id/textView35"
             android:layout_gravity="center|top"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="47dp"
             android:textSize="32dp"
             android:textColor="#ff6d15"
             android:textStyle="bold"/>
@@ -94,6 +94,7 @@
             android:paddingRight="25dp"
             android:paddingBottom="25dp"
             android:singleLine="false"
+            android:layout_marginTop="15dp"
             android:textColorHint="@color/wallet_hint_foreground_holo_dark"
 
 

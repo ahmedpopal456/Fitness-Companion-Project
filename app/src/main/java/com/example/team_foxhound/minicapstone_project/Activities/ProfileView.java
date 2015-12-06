@@ -2,15 +2,17 @@ package com.example.team_foxhound.minicapstone_project.Activities;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.team_foxhound.minicapstone_project.R;
 
-import persistence.HBInfoHandler;
 import persistence.MainHandler;
 import persistence.userCredentialsHandler;
 
@@ -28,7 +30,8 @@ public class ProfileView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_view);
-
+        final ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFAE1B")));
         Bundle extras = getIntent().getExtras();
         final String username = extras.getString("username2");
 
@@ -37,6 +40,7 @@ public class ProfileView extends AppCompatActivity {
         TextView tv2 = (TextView) findViewById(R.id.textView31);
         TextView tv3 = (TextView) findViewById(R.id.textView32);
         TextView tv4 = (TextView) findViewById(R.id.textView33);
+
 
 
         // GET READY TO READ FROM DB
@@ -88,11 +92,11 @@ public class ProfileView extends AppCompatActivity {
 
 
 
-        tv.setText("First Name : " + Firstname);
-        tv1.setText("Last Name : " + Lastname);
-        tv2.setText("Age : " + Integer.toString(age));
-        tv3.setText("Weight : " + Integer.toString(weight)+ " lbs");
-        tv4.setText("Height : " + Integer.toString(height)+ " cm");
+        tv.setText( Firstname);
+        tv1.setText( Lastname);
+        tv2.setText("Age :  " +Integer.toString(age));
+        tv3.setText("Weight :       " + Integer.toString(weight)+ " lbs");
+        tv4.setText("Height :       " + Integer.toString(height)+ " cm");
 
 
 
@@ -120,4 +124,6 @@ public class ProfileView extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

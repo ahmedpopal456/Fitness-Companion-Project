@@ -111,8 +111,7 @@
         </activity>
         <activity
             android:name=".Activities.ProfileView"
-            android:label="@string/title_activity_profile_view"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="My Profile">
         </activity>
     </application>
 

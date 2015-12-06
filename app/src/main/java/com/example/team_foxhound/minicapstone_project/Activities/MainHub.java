@@ -202,16 +202,7 @@ public class MainHub extends AppCompatActivity  {
 
     }
 
-    public void DeleteTextView(View v) {
-
-        editText11 = (EditText) findViewById(R.id.editText11);
-
-        
-            editText11.setText(null);
-
-
-
-    }
+ 
 
 
 }
