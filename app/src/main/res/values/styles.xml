@@ -28,4 +28,5 @@
         <item name="colorPrimaryDark">@color/actionbar_background</item>
         <item name="colorPrimary">@color/actionbar_background</item>
     </style>
+
 </resources>

@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.team_foxhound.minicapstone_project.R;
@@ -32,6 +33,8 @@ public class MainHub extends AppCompatActivity  {
     private ListView drawerList;
     private FragmentTransaction fragmentTransaction;
     private FragmentManager fragmentManager;
+    public static EditText editText11; // sticky note
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,6 +202,16 @@ public class MainHub extends AppCompatActivity  {
 
     }
 
+    public void DeleteTextView(View v) {
+
+        editText11 = (EditText) findViewById(R.id.editText11);
+
+        
+            editText11.setText(null);
+
+
+
+    }
 
 
 }
