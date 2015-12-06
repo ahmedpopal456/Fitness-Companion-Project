@@ -30,8 +30,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             fab:fab_title="Save"
+            android:id="@+id/save"
             fab:fab_colorNormal="#ffae1b"
             fab:fab_colorPressed="#ffffff"
+                android:onClick="save"
             fab:fab_size="mini"
                 android:src="@drawable/ic_save_white_18dp"
             >
@@ -42,11 +44,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 fab:fab_title="Redo"
+                android:id="@+id/redo"
+                android:onClick="delete"
                 fab:fab_colorNormal="#ffae1b"
                 fab:fab_colorPressed="#ffffff"
                 fab:fab_size="mini"
                 android:src="@drawable/ic_delete_white_18dp"
-                android:onClick="DeleteTextView"
 
 
                 >

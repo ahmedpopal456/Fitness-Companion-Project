@@ -3,9 +3,12 @@ package com.example.team_foxhound.minicapstone_project.Activities;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -23,6 +26,8 @@ import android.widget.ListView;
 import com.example.team_foxhound.minicapstone_project.R;
 
 import java.util.ArrayList;
+
+import persistence.MainHubHandler;
 
 public class MainHub extends AppCompatActivity  {
 
@@ -44,9 +49,21 @@ public class MainHub extends AppCompatActivity  {
         Bundle extras = getIntent().getExtras();
         final String username = extras.getString("username");
 
+         editText11 = (EditText) findViewById(R.id.editText11);
 
 
+         MainHubHandler mainHubHandler = new MainHubHandler(MainHub.this);
+         SQLiteDatabase sqLiteDatabase = mainHubHandler.getWritableDatabase();
 
+         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + "mainhub ", null);
+         startManagingCursor(cursor);
+
+          if(cursor.moveToLast()) {
+
+              if (cursor.getString(0) != null) {
+                  editText11.setText(cursor.getString(0));
+              }
+          }
 //==========================================================================================
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList = (ListView) findViewById(R.id.drawerlist);
@@ -131,6 +148,8 @@ public class MainHub extends AppCompatActivity  {
 
         //==========================================================================================
 
+
+
     }
 
 
@@ -202,7 +221,35 @@ public class MainHub extends AppCompatActivity  {
 
     }
 
- 
+
+   public void delete(View v) {
+
+                 // set text to null
+                 editText11 = (EditText) findViewById(R.id.editText11);
+                 editText11.setText(null);
+
+                 //delete from the database
+                 MainHubHandler mainHubHandler = new MainHubHandler(MainHub.this);
+                 SQLiteDatabase sqLiteDatabase = mainHubHandler.getReadableDatabase();
+                 mainHubHandler.deletetable(sqLiteDatabase);
 
 
+             }
+
+
+    public void save(View v) {
+
+              // set text to null
+              editText11 = (EditText) findViewById(R.id.editText11);
+              String string  = editText11.getText().toString();
+
+
+              if(string != null) {
+                  MainHubHandler mainHubHandler = new MainHubHandler(MainHub.this);
+                  SQLiteDatabase sqLiteDatabase = mainHubHandler.getWritableDatabase();
+                  mainHubHandler.putString(string, sqLiteDatabase);
+              }
+
+
+          }
 }
