@@ -102,7 +102,8 @@
         </activity>
         <activity
             android:name=".Activities.MainHub"
-            android:label="@string/title_activity_main_hub" >
+            android:label="@string/title_activity_main_hub">
+
         </activity>
         <activity
             android:name=".Activities.DetailsViewer"

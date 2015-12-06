@@ -2,5 +2,6 @@
 
     <color name="black_overlay">#66000000</color>
     <color name="Red">#ff6666</color>
+    <color name="actionbar_background">#ffae1b</color>
 
 </resources>

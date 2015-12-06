@@ -5,20 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.team_foxhound.minicapstone_project.UserHub"
-    >
+    xmlns:fab="http://schemas.android.com/apk/res-auto">
 
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:background="#ffffff">
 
 
-    <!--<fragment android:id="@+id/navigation_drawer"-->
-    <!--android:layout_width="@dimen/navigation_drawer_width" android:layout_height="match_parent"-->
-    <!--android:layout_gravity="start"-->
-    <!--android:name="com.example.team_foxhound.minicapstone_project.NavigationDrawerFragment"-->
-    <!--tools:layout="@layout/fragment_navigation_drawer" />-->
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|bottom"
+            fab:fab_addButtonColorNormal="#1a8f0e"
+            fab:fab_addButtonColorPressed="#1a8f0e"
+
+            >
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                fab:fab_title="Sticky Notes"
+                fab:fab_colorNormal="#ffae1b"
+                fab:fab_colorPressed="#ffffff"
+                fab:fab_size="mini"
+                android:src="@drawable/ic_edit_white_18dp"
+                >
+
+            </com.getbase.floatingactionbutton.FloatingActionButton>
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                fab:fab_title="Progress"
+                fab:fab_colorNormal="#ffae1b"
+                fab:fab_colorPressed="#ffffff"
+                fab:fab_size="mini"
+
+                >
+
+            </com.getbase.floatingactionbutton.FloatingActionButton>
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    </FrameLayout>
+
 
 
     <ListView

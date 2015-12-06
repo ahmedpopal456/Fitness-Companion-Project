@@ -4,6 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="#ffffff"
     tools:context="com.example.team_foxhound.minicapstone_project.Activities.ProgressView">
 
     <TableLayout
@@ -387,5 +388,6 @@
         android:id="@+id/textView25"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="#167e0b"/>
 </RelativeLayout>

@@ -3,6 +3,8 @@ package com.example.team_foxhound.minicapstone_project.Activities;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -10,7 +12,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +19,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.team_foxhound.minicapstone_project.Activities.MapsActivity;
 import com.example.team_foxhound.minicapstone_project.R;
 
 import java.util.ArrayList;
@@ -38,8 +38,11 @@ public class MainHub extends AppCompatActivity  {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_hub);
-        Bundle extras = getIntent().getExtras();;
+        Bundle extras = getIntent().getExtras();
         final String username = extras.getString("username");
+
+
+
 
 //==========================================================================================
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -63,6 +66,7 @@ public class MainHub extends AppCompatActivity  {
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFAE1B")));
         fragmentManager = getSupportFragmentManager();
 
 //            loadSelection(0);

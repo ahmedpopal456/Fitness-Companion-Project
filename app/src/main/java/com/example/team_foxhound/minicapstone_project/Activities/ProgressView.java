@@ -2,19 +2,19 @@ package com.example.team_foxhound.minicapstone_project.Activities;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.team_foxhound.minicapstone_project.R;
-
-import junit.framework.TestCase;
 
 import persistence.HBInfoHandler;
 
@@ -32,7 +32,7 @@ public class ProgressView extends AppCompatActivity {
 
 
         TextView textView1 = (TextView) findViewById(R.id.textView25);
-        textView1.setText("For " +username + ":");
+        textView1.setText("PAST WORKOUT STATISTICS for user : " +username);
 
         //    ===============================================================================================
 
@@ -41,6 +41,8 @@ public class ProgressView extends AppCompatActivity {
         HBInfoHandler hbInfoHandler = new HBInfoHandler(this);
         SQLiteDatabase database = hbInfoHandler.getWritableDatabase();
 
+        final ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFAE1B")));
 
         Cursor cursor = database.rawQuery("SELECT * FROM " + "heartbeatinfo", null);
         int i = 0;
