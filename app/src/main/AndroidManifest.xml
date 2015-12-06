@@ -79,8 +79,7 @@
         <activity
             android:name=".Activities.MapsActivity"
             android:label="@string/title_activity_maps"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
             android:name=".InformationCatalog.RegisterInfo"
