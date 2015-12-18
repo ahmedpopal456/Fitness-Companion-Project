@@ -1,6 +1,7 @@
 package com.example.team_foxhound.minicapstone_project.Activities;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -38,6 +39,8 @@ public class RegistrationConfirmation extends RegisterInfo {
 
         super.onCreate(savedInstanceState);                                        // SETTING UP PAGE TO SHOW ALL OF THE
         setContentView(R.layout.activity_registration_confirmation);          // USER'S ENTERED INFORMATION
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         // IF THE USER WISHES TO CHANGE
         fname = (TextView) findViewById(R.id.textView9);                         // HIS/HER INFO, HE/SHE CAN GO BACK
         lname = (TextView) findViewById(R.id.textView10);

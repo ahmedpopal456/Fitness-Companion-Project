@@ -3,6 +3,7 @@ package com.example.team_foxhound.minicapstone_project.Activities;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -46,6 +47,8 @@ public class MainHub extends AppCompatActivity  {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_hub);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         Bundle extras = getIntent().getExtras();
         final String username = extras.getString("username");
 
@@ -69,10 +72,10 @@ public class MainHub extends AppCompatActivity  {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList = (ListView) findViewById(R.id.drawerlist);
         ArrayList<String> listArray = new ArrayList<String>();
-        listArray.add("Fitness Home");
+        listArray.add("MainHub");
         listArray.add("MonitorNow");
         listArray.add("MyProgress");
-        listArray.add("PredictNow");
+        listArray.add("SetRouteNow");
         listArray.add("Profile");
         listArray.add("Log Out");
 

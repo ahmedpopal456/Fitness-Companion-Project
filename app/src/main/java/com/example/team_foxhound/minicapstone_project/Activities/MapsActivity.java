@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -63,6 +64,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     boolean directions=false;
     static Marker marker1;
     static Marker marker2;
+
 
     LatLng myposition;
     static LatLng startposition;
@@ -269,9 +271,14 @@ if(!hasstarted) {
 
 
                     if (isNetworkAvailable()) {
-                        mMap.setMyLocationEnabled(true);
-                        Toast.makeText(getApplicationContext(), "Location Enabled", Toast.LENGTH_LONG).show();
-                        hasstarted= true;
+
+
+                        if(statusCheck()) {
+
+                            mMap.setMyLocationEnabled(true);
+                            Toast.makeText(getApplicationContext(), "Location Enabled", Toast.LENGTH_LONG).show();
+                            hasstarted = true;
+                        }
 
 
                     } else {
@@ -292,8 +299,8 @@ if(!hasstarted) {
                 public void onClick(DialogInterface arg0, int arg1) {
 
                     // do  nothing
-                    hasstarted= false;
-                    LatLng latLng = new LatLng(mMap.getCameraPosition().target.latitude,mMap.getCameraPosition().target.longitude);
+                    hasstarted = false;
+                    LatLng latLng = new LatLng(mMap.getCameraPosition().target.latitude, mMap.getCameraPosition().target.longitude);
                     CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 3);
                     mMap.animateCamera(cameraUpdate);
                 }
@@ -540,6 +547,7 @@ if(!hasstarted) {
 
            // Traversing through all the routes
            for(int i=0;i<result.size();i++){
+
                points = new ArrayList<LatLng>();
                lineOptions = new PolylineOptions();
 
@@ -559,23 +567,61 @@ if(!hasstarted) {
                }
 
                // Adding all the points in the route to LineOptions
-               lineOptions.addAll(points);
-               lineOptions.width(3);
-               lineOptions.color(Color.RED);
-           }
+
+               if( !points.isEmpty() && points.size() < 1500) {
+
+                   try {
+
+                       lineOptions.addAll(points);
+                       lineOptions.width(3);
+                       lineOptions.color(Color.RED);
+
+                   } catch (Exception e) {
+
+                       e.printStackTrace();
+                   }
+
+               }
+
+               else {
+
+                   Toast.makeText(getApplicationContext(),  "Please Select a Reasonable Route", Toast.LENGTH_LONG).show();
+
+
+               }
+
+               }
+
 
            // Drawing polyline in the Google Map for the i-th route
+
+         try  {
+
            mMap.addPolyline(lineOptions);
 
+       } catch (Exception e) {
 
-         for(int k=0; k<points.size()-1;k++) {
-
-          totaldistance = CalculationByDistance(points.get(k), points.get(k+1))+ totaldistance;
-
-          }
+           e.printStackTrace();
 
        }
-   }
+
+
+           try {
+
+
+               for (int k = 0; k < points.size() - 1; k++) {
+
+                   totaldistance = CalculationByDistance(points.get(k), points.get(k + 1)) + totaldistance;
+
+               }
+           } catch (Exception e ) {
+
+               Toast.makeText(getApplicationContext(),  "Invalid Route", Toast.LENGTH_LONG).show();
+
+           }
+           }
+       }
+
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
@@ -625,5 +671,44 @@ if(!hasstarted) {
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null;
+    }
+
+
+    public boolean statusCheck()
+    {
+        final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+
+        if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+            buildAlertMessageNoGps();
+ return false;
+        }
+
+        else
+
+        {return true;}
+
+    }
+
+    private void buildAlertMessageNoGps() {
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                    public void onClick(final DialogInterface dialog,  final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                        MapsActivity.this.finish();;
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        final AlertDialog alert = builder.create();
+        alert.show();
+
     }
     }

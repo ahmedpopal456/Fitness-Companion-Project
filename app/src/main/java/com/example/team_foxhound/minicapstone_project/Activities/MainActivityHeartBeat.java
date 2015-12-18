@@ -94,7 +94,7 @@ public class MainActivityHeartBeat extends AppCompatActivity {
         this.getApplicationContext().registerReceiver(new BTBondReceiver(), filter2);
 
         //Obtaining the handle to act on the CONNECT button
-//        TextView tv = (TextView) findViewById(R.id.labelStatusMsg);
+        //TextView tv = (TextView) findViewById(R.id.labelStatusMsg);
         String ErrorText = "Not Connected to HxM ! !";
 //        tv.setText(ErrorText);
 
@@ -124,8 +124,6 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
                             }
                         }
-
-
                     }
 
                     //BhMacID = btDevice.getAddress();
@@ -245,17 +243,20 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                     if (seekBar.getProgress()  >= 0 && seekBar.getProgress()  <= 60) {
 
 
-
-
                         while(!mediaplayerLow.isPlaying()) {
 
                             mediaplayerLow.start();
 
                         }
 
-                        while(mediaplayerMedium.isPlaying()) {
+                       if(mediaplayerMedium.isPlaying()) {
 
                             mediaplayerMedium.pause();
+                        }
+
+                        if(mediaPlayerHigh.isPlaying()){
+
+                            mediaPlayerHigh.pause();
                         }
 
                     }
@@ -268,12 +269,12 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                             mediaplayerMedium.start();
 
                         }
-                        while (mediaplayerLow.isPlaying()) {
+                        if(mediaplayerLow.isPlaying()) {
 
                             mediaplayerLow.pause();
                         }
 
-                        while(mediaPlayerHigh.isPlaying()) {
+                        if(mediaPlayerHigh.isPlaying()) {
 
                             mediaPlayerHigh.pause();
                         }
@@ -290,12 +291,15 @@ public class MainActivityHeartBeat extends AppCompatActivity {
 
                         }
 
-                        while (mediaplayerMedium.isPlaying()) {
+                        if (mediaplayerMedium.isPlaying()) {
 
                             mediaplayerMedium.pause();
                         }
 
+                        if(mediaplayerLow.isPlaying()) {
 
+                            mediaplayerLow.pause();
+                        }
                     }
                 }
 
@@ -404,45 +408,57 @@ public class MainActivityHeartBeat extends AppCompatActivity {
                                 // do something when the button is clicked
                                 public void onClick(DialogInterface arg0, int arg1) {
 
-                                    SQLiteDatabase sqLiteDatabase = mainHandler1.getReadableDatabase();
-                                    Cursor cursor1 = sqLiteDatabase.rawQuery("SELECT * FROM " + "heartbeat", null);
+                                    try {
+                                        SQLiteDatabase sqLiteDatabase = mainHandler1.getReadableDatabase();
+                                        Cursor cursor1 = sqLiteDatabase.rawQuery("SELECT * FROM " + "heartbeat", null);
 
-                                    if(cursor1.moveToFirst()) {
+                                        if (cursor1.moveToFirst()) {
 
-                                        Intent intent = new Intent(MainActivityHeartBeat.this, Graph.class);
-                                        intent.putExtra("targethb", HBMAX1);
-                                        intent.putExtra("username1", username);
-                                        startActivity(intent);
-                                        //==================================================================================== Making sure Music Stops Playing
+                                            Intent intent = new Intent(MainActivityHeartBeat.this, Graph.class);
+                                            intent.putExtra("targethb", HBMAX1);
+                                            intent.putExtra("username1", username);
+                                            startActivity(intent);
+                                            //==================================================================================== Making sure Music Stops Playing
 
-                                       if (mediaplayerLow != null) {
+                                            if (mediaplayerLow != null) {
 
-                                            mediaplayerLow.stop();
+                                                mediaplayerLow.stop();
+                                            }
+
+                                            if (mediaplayerMedium != null) {
+
+                                                mediaplayerMedium.stop();
+                                            }
+
+                                            if (mediaPlayerHigh != null) {
+
+                                                mediaPlayerHigh.stop();
+                                            }
+
+                                            finish();
+
                                         }
 
-                                       if (mediaplayerMedium != null) {
+                                        else{
 
-                                            mediaplayerMedium.stop();
+                                            Toast.makeText(getApplicationContext(), "No Recording has been Stored", Toast.LENGTH_LONG).show();
+
                                         }
 
-                                        if(mediaPlayerHigh!=null) {
 
-                                            mediaPlayerHigh.stop();
+
+                                    }
+                                              catch(Exception e){
+
+                                                  Toast.makeText(getApplicationContext(), "Recording was corrupted", Toast.LENGTH_LONG).show();
+
                                         }
+                                    }
 
+                            })
 
 //======================================================================================================================
-                                        finish();
-                                    }
 
-                                    else{
-
-                                        Toast.makeText(getApplicationContext(), "No Recording has been Stored", Toast.LENGTH_LONG).show();
-
-                                    }
-
-                                }
-                            })
 
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
 

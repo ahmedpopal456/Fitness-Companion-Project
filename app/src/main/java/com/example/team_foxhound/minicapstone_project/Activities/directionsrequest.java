@@ -24,12 +24,10 @@ public class directionsrequest {
 
             jRoutes = jObject.getJSONArray("routes");
 
-            /** Traversing all routes */
             for(int i=0;i<jRoutes.length();i++){
                 jLegs = ( (JSONObject)jRoutes.get(i)).getJSONArray("legs");
                 List path = new ArrayList<HashMap<String, String>>();
 
-                /** Traversing all legs */
                 for(int j=0;j<jLegs.length();j++){
                     jSteps = ( (JSONObject)jLegs.get(j)).getJSONArray("steps");
 
@@ -57,10 +55,7 @@ public class directionsrequest {
         return routes;
     }
 
-    /**
-     * Method to decode polyline points
-     * Courtesy : jeffreysambells.com/2010/05/27/decoding-polylines-from-google-maps-direction-api-with-java
-     * */
+
     private List<LatLng> decodePoly(String encoded) {
 
         List<LatLng> poly = new ArrayList<LatLng>();

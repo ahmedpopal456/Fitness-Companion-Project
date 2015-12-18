@@ -2,6 +2,7 @@ package com.example.team_foxhound.minicapstone_project.InformationCatalog;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -32,6 +33,8 @@ public class RegisterInfo extends UserInfoActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_info);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
         activityA = this;
 
